@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react'
-import {getAllTickets} from '../../apis/ticketsApi';
+import React, { useEffect, useState } from 'react'
+import { getAllTickets } from '../../apis/ticketsApi';
 import CardComponent from '../CardComponent';
+import { useHistory } from 'react-router-dom';
 
 let allTickets = [];
 
 export default function TicketsContainer({ categoryId }) {
+
     const [tickets, setTickets] = useState([]);
     useEffect(() => {
         getAllTickets()
@@ -17,10 +19,12 @@ export default function TicketsContainer({ categoryId }) {
 
     useEffect(() => {
         setTickets(allTickets.filter((ticket) => {
-                return  categoryId === '1' || ticket.category_Id === categoryId;
-            })
+            return categoryId === '1' || ticket.category_Id === categoryId;
+        })
         )
     }, [categoryId]);
+
+
 
     return (
         <div className="tickets-container">
