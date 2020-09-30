@@ -1,5 +1,7 @@
 const Seller = require('../models/seller-model');
 const mongoose= require('mongoose')
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const createSeller = (req,res) => {
     const body = req.body;
@@ -9,15 +11,15 @@ const createSeller = (req,res) => {
             error: 'You must provide a seller'
         })
     }
-    const seller = new Seller(body);
-
-    if(!seller){
+    bcrypt.hash(body.password, saltRounds,(err,hash) => {
+        console.log("secret hash");
+        body.password= hash;
+        const seller = new Seller(body);        if(!seller){
         return res.status(400).json( {
             success: false,
             error: err
         })
     }
-
     seller.save()
         .then(() => {
             return res.status(201).json({
@@ -32,6 +34,7 @@ const createSeller = (req,res) => {
                 message: 'seller not created!'
             })
         })
+    })
 }
 const getSellers = (req,res) => {
    Seller.find()

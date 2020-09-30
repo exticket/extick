@@ -9,6 +9,7 @@
     "all": "concurrently --kill-others-on-fail \"npm run client\" \"npm start\""
   },
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "axios": "^0.20.0",
     "concurrently": "^5.2.0",
     "cookie-parser": "~1.4.4",

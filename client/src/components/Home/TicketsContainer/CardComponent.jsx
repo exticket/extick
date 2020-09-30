@@ -1,16 +1,28 @@
 import React from 'react';
 import './CardComponent.css';
+import { useHistory } from 'react-router-dom';
+
 
 
 export default function CardComponent({ eventInfo }) {
-const dateObject = new Date(eventInfo.ticket_dates);
-const date = dateObject.toLocaleDateString();
-const time = dateObject.toLocaleTimeString();
 
+    const history = useHistory();
+
+    const dateObject = new Date(eventInfo.ticket_dates);
+    const date = dateObject.toLocaleDateString();
+    const time = dateObject.toLocaleTimeString();
+
+    const onCardClick = (eventInfo) => {
+        console.log(eventInfo);
+        history.push({
+            pathname: '/eventProfile',
+            props: {eventInfo}
+        });
+    }
 
     return (
 
-        <div className="card ticket" >
+        <div className="card ticket" onClick={() => onCardClick(eventInfo)}>
             <div className="eventImgContainer">
                 <img className="eventImg" src={eventInfo.imgUrl} alt="event" />
             </div>
@@ -25,3 +37,4 @@ const time = dateObject.toLocaleTimeString();
         </div>
     )
 }
+

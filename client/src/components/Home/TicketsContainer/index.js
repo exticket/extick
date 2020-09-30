@@ -5,6 +5,7 @@ import CardComponent from './CardComponent';
 let allTickets = [];
 
 export default function TicketsContainer({ categoryId }) {
+
     const [tickets, setTickets] = useState([]);
     useEffect(() => {
         getAllTickets()
@@ -17,10 +18,12 @@ export default function TicketsContainer({ categoryId }) {
 
     useEffect(() => {
         setTickets(allTickets.filter((ticket) => {
-                return  categoryId === '1' || ticket.category_Id === categoryId;
-            })
+            return categoryId === '1' || ticket.category_Id === categoryId;
+        })
         )
     }, [categoryId]);
+
+
 
     return (
         <div className="tickets-container">
