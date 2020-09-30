@@ -1,75 +1,47 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+#root {
+  position: relative;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+main {
+  padding-bottom: 15vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.category-menu{
+.category-menu {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   list-style-type: none;
 }
-.category-item{
+
+.category-item {
   border: 1px solid grey;
   font-weight: 500;
   border-radius: 20px;
   margin: 8px;
   padding: 5px 20px;
-  
+
 }
-.category-item-clicked{
+
+.category-item-clicked {
   background-color: black;
   color: white;
 }
-.category-item:hover{
+
+.category-item:hover {
   background-color: #999999;
   color: whitesmoke;
   cursor: pointer;
 }
 
 .ticket {
-  /* width: 180px; */
-  /* height: 220px; */
   border: 1px solid grey;
   border-radius: 10px;
   margin: 20px 20px;
 }
 
-.tickets-container{
+.tickets-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -77,26 +49,67 @@
   width: 60%;
   margin: 0 auto;
 }
-  .Login {
-    padding: 60px 0;
-  }
-  .Login form {
-    margin: 0 auto;
-    max-width: 320px;
-  }
-  .Login input {
-    margin: 10px 0;
-    display: block;
-    box-sizing: border-box;
-  }
+
+.Login {
+  padding: 60px 0;
+}
+
+.Login form {
+  margin: 0 auto;
+  max-width: 320px;
+}
+
+.Login input {
+  margin: 10px 0;
+  display: block;
+  box-sizing: border-box;
+}
 
 .main-banner {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 25vh;
+  height: 30vh;
   text-align: center;
   background-color: #b9b9b9;
-  font-size: 1.4rem;
+  font-size: 2rem;
   font-weight: 500;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+header {
+  display: flex;
+  background-color: #fafafa;
+  padding: 15px 5vw;
+}
+
+.link-button {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.link-button:active {
+  color: unset;
+}
+
+.sell-tickets-btn {
+  margin-inline-start: auto;
+  padding: 8px 25px;
+  color: white;
+  border-radius: 3px;
+  background-color: #555555;
+}
+
+.copyright-text {
+  color: rgba(0, 0, 0, .7);
+  text-shadow: 0 1px rgba(255, 255, 255, 0.1);
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  background: #b9b9b9;
+  text-align: center;
+  width: 100%;
+  height: 8vh;
 }

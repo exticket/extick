@@ -11,8 +11,7 @@ var usersRouter = require('./routes/users');
 var categoriesRouter = require('./routes/category-router');
 var sellersRouter = require('./routes/seller-router');
 var ticketsRouter = require('./routes/ticket-router');
-
-
+var loginRouter = require('./routes/login-router');
 
 
 var app = express();
@@ -48,6 +47,8 @@ app.use('/users', usersRouter);
 app.use('/category', categoriesRouter);  
 app.use('/seller', sellersRouter);
 app.use('/ticket', ticketsRouter);
+app.use('/login', loginRouter);
+
 
 
 app.get('/*', (req, res) => {

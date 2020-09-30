@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Menu from '../components/Menu';
 import { getAllCategories } from '../apis/categoriesApi';
-import TicketsContainer from '../components/TicketsContainer';
-import Banner from '../components/Banner';
+import TicketsContainer from '../components/Home/TicketsContainer';
+import Banner from '../components/Home/Banner';
 
 function Homepage() {
     const [items, setItems] = useState([]);
