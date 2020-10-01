@@ -93,7 +93,6 @@ header {
 }
 
 .sell-tickets-btn {
-  margin-inline-start: auto;
   padding: 8px 25px;
   color: white;
   border-radius: 3px;
@@ -129,4 +128,13 @@ footer {
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 0 15%;
+}
+
+.login-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 30px;
+  width: 72px;
 }
