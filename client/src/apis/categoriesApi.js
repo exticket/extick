@@ -5,5 +5,8 @@ const api = axios.create({
     baseURL:`${backendUrl}/category`
 })
 
-export const getAllCategories = async () => api.get('/');
+export const getAllCategories = async () => {
+    const res = await api.get('/');
+    return res.data.data;
+}
 

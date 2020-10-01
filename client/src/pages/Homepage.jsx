@@ -1,32 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import Menu from '../components/Menu';
 import { getAllCategories } from '../apis/categoriesApi';
-import TicketsContainer from '../components/Home/TicketsContainer';
+import { getAllTickets } from '../apis/ticketsApi';
+import TicketsContainer from '../components/TicketsContainer';
 import Banner from '../components/Home/Banner';
 
-function Homepage() {
-    const [items, setItems] = useState([]);
 
+
+function Homepage() {
+    const [categories, setCategories] = useState([]);
+    const [tickets, setTickets] = useState([]);
     const [categoryId, setCategoryId] = useState(null);
 
+    async function fetchData() {
+        try {
+            let categories = await getAllCategories();
+            categories.unshift({ _id: '1', name: 'All' });
+            setCategories(categories);
+
+            setTickets(await getAllTickets());
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
-        getAllCategories()
-            .then(res => {
-                let items = res.data.data;
-                items.unshift({ _id: '1', name: 'All' });
-                setItems(items);
-            })
-            .catch(error => console.log(error));
+        fetchData();
     }, []);
 
     const updateCategoryId = (itemId) => {
-        setCategoryId(itemId);
+        setCategoryId(itemId === "1" ? null : itemId);
     }
 
     return <div>
         <Banner />
-        <Menu items={items} ulClass="category-menu" liClass="category-item" liClassClicked="category-item-clicked" onItemClicked={updateCategoryId} />
-        <TicketsContainer categoryId={categoryId} />
+        <Menu items={categories} ulClass="category-menu" liClass="category-item" liClassClicked="category-item-clicked" onItemClicked={updateCategoryId} />
+        <TicketsContainer tickets={tickets} categoryId={categoryId} />
     </div>
 }
 
