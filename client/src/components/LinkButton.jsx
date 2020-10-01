@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function LinkButton({ url, text, className }) {
+export default function LinkButton({ text, className }) {
     return (
-        <a href={url} className={"link-button " + className} >
+        <button className={className} >
             {text}
-        </a>
+        </button>
     )
 }

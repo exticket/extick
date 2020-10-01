@@ -4,7 +4,7 @@ import LinkButton from '../components/LinkButton';
 
 export default function LoginButton() {
     return (
-        <div className="login-btn">
+        <div className="header-log-area login-btn">
             <PersonIcon />
             <LinkButton text="Log In" url="/sellers/login"/>
         </div>

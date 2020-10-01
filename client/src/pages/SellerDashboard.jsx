@@ -5,7 +5,7 @@ import { getAllTickets } from '../apis/ticketsApi';
 import SellerContext from '../SellerContext';
 
 export default function SellerDashboard() {
-    const seller = useContext(SellerContext);
+    const seller = useContext(SellerContext).seller;
     const [myTickets, setMyTickets] = useState([]);
 
     async function fetchData() {

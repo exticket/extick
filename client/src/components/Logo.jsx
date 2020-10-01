@@ -1,5 +1,6 @@
 import React from 'react'
+import {Link} from 'react-router-dom';
 
 export default function Logo() {
-    return <a title="GO TO HOMEPAGE" href="/"><img src="/demo_logo.png" alt="Extick logo" width="100" height="30"/></a>
+    return <Link  to="/"><img title="GO TO HOMEPAGE" src="/demo_logo.png" alt="Extick logo" width="100" height="30"/></Link>
 }
