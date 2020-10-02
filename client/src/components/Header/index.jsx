@@ -12,7 +12,7 @@ export default function Header() {
     return (
         <header>
             <Logo />
-            {seller ? <HelloMsg seller={seller}/> : <LoginButton />}
+            {seller ? <HelloMsg seller={seller}/> :  <LoginButton />}
             {/* {!window.location.pathname.startsWith('/sellers') && <LoginButton />} */}
             {window.location.pathname === '/' && <Link to="/sellers/login"><LinkButton className="sell-tickets-btn" url="/sellers/login" text="SELL TICKETS"/></Link>}
         </header>
