@@ -1,28 +1,65 @@
 .card {
-    width: 210px;
-    border: 1px solid lightslategray;
-    background-color: #eee;;
-    border: 3px solid grey;
+    width: 230px;
+    height: 280px;
+    border: 1px solid lightgray;
     cursor: pointer;
+    border-radius: 10px;
+    margin: 20px 20px;
 }
 
+.card-content {
+    padding: 0 10px;
+}
 .card:hover {
-    background-color: rgb(214, 214, 214);
-    box-shadow: 0px 10px 15px 0 rgb(148, 148, 148);
+    background-color: rgb(245, 245, 245);
+    box-shadow: 0px 6px 9px 0 rgb(148, 148, 148);
+}
+
+.card:hover .eventImgContainer{
+    background-color:rgb(231, 230, 230);
+
+}
+
+.card:hover .circle-icon{
+    background-color:rgb(197, 196, 196);
+
 }
 
 .card > * {
-    font-weight: 300;
+    font-weight: 400;
     cursor: pointer;
 }
 
 .eventImgContainer {
+    position: relative;
     text-align: center;
-    border: 5px solid grey;
- 
-    
+    height: 125px;
+    background-color: rgb(243, 243, 243);
+    border-radius: 10px;
 }
 
 .eventImg {
     width: 90%;
+}
+
+.eventName {
+    display: inline-flex;
+    align-items: center;
+    height: 43.2px;
+}
+
+.circle-icon {
+    background-color: rgb(218, 218, 218);
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    flex-shrink: 0;
+    margin-inline-end: 10px;
+}
+
+.card-header {
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 }

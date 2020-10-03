@@ -16,24 +16,29 @@ export default function CardComponent({ eventInfo }) {
         console.log(eventInfo);
         history.push({
             pathname: '/eventProfile',
-            props: {eventInfo}
+            props: { eventInfo }
         });
     }
 
     return (
 
-        <div className="card ticket" onClick={() => onCardClick(eventInfo)}>
+        <div title="Click For Details" className="card ticket" onClick={() => onCardClick(eventInfo)}>
             <div className="eventImgContainer">
                 <img className="eventImg" src={eventInfo.imgUrl} alt="event" />
+                <div className="card-header">
+                    <div className="circle-icon"></div>
+                    <span className="eventName">{eventInfo.ticket_title}</span>
+                </div>
             </div>
 
-            <p className="eventName">{eventInfo.ticket_title}</p>
-            <span className="date">{date} </span>
-            |
-            <span className="hour">{time}</span>
-            <p className="location">{eventInfo.location}</p>
-            {/* <p className="sellerName">{eventInfo.seller_Id}</p> */}
-            <p className="price">{eventInfo.price} ₪</p>
+            <div className="card-content">
+                <p className="date">{date} </p>
+            
+                <p className="hour">{time}</p>
+                <p className="location">{eventInfo.location}</p>
+                {/* <p className="sellerName">{eventInfo.seller_Id}</p> */}
+                <p className="price">{eventInfo.price} ₪</p>
+            </div>
         </div>
     )
 }
