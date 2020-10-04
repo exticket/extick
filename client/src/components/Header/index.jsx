@@ -14,7 +14,7 @@ export default function Header() {
         <header>
             <Logo />
             {seller ? <HelloMsg seller={seller} /> : (pathname !== '/sellers/login' && <LoginButton />)}
-            {pathname !== '/sellers/login' && (
+            {(pathname !== '/sellers/login' && pathname !== '/sellers/mytickets') && (
                 <Link to={seller ? "/sellers/selltickets" : "/sellers/login"}>
                     <LinkButton className="sell-tickets-btn" url="/sellers/login" text="SELL TICKETS" />
                 </Link>)

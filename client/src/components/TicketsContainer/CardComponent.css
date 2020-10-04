@@ -12,17 +12,15 @@
 }
 .card:hover {
     background-color: rgb(245, 245, 245);
-    box-shadow: 0px 6px 9px 0 rgb(148, 148, 148);
+    box-shadow: 0px 4px 6px 0 rgb(148, 148, 148);
 }
 
 .card:hover .eventImgContainer{
     background-color:rgb(231, 230, 230);
-
 }
 
 .card:hover .circle-icon{
     background-color:rgb(197, 196, 196);
-
 }
 
 .card > * {

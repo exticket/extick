@@ -24,10 +24,7 @@ export default function SellerMyTickets() {
 
     return (
         <div className="my-tickets-container">
-            {/* <div className="seller-dashboard-header">
-                <LinkButton text="ADD NEW TICKET" url="/sellers/selltickets" className="add-new-ticket" />
-            </div> */}
-            <h4>My tickets:</h4>
+            <h2>My tickets:</h2>
 
             <TicketsContainer tickets={myTickets} />
         </div>
