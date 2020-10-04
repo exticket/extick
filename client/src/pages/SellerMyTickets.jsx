@@ -4,7 +4,7 @@ import TicketsContainer from '../components/TicketsContainer';
 import { getAllTickets } from '../apis/ticketsApi';
 import SellerContext from '../SellerContext';
 
-export default function SellerDashboard() {
+export default function SellerMyTickets() {
     const seller = useContext(SellerContext).seller;
     const [myTickets, setMyTickets] = useState([]);
 
@@ -23,11 +23,12 @@ export default function SellerDashboard() {
     }, [seller]);
 
     return (
-        <div>
-            <div className="seller-dashboard-header">
-                <h1>Your tickets:</h1>
+        <div className="my-tickets-container">
+            {/* <div className="seller-dashboard-header">
                 <LinkButton text="ADD NEW TICKET" url="/sellers/selltickets" className="add-new-ticket" />
-            </div>
+            </div> */}
+            <h4>My tickets:</h4>
+
             <TicketsContainer tickets={myTickets} />
         </div>
     )
