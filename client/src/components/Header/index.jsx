@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SellerContext from '../../SellerContext';
+import AccountDropDown from '../AccountDropDown/AccountDropDown';
 import HelloMsg from '../HelloMsg';
 import LinkButton from '../LinkButton';
 import LoginButton from '../LoginButton';
@@ -13,10 +14,18 @@ export default function Header() {
     return (
         <header>
             <Logo />
-            {seller ? <HelloMsg seller={seller} /> : (pathname !== '/sellers/login' && <LoginButton />)}
+            {seller ?
+                (<>
+                    <AccountDropDown />
+                    <HelloMsg seller={seller} />
+                </>
+                ) :
+                (pathname !== '/sellers/login' && <LoginButton />)
+            }
+
             {(pathname !== '/sellers/login' && pathname !== '/sellers/mytickets') && (
                 <Link to={seller ? "/sellers/selltickets" : "/sellers/login"}>
-                    <LinkButton className="sell-tickets-btn" url="/sellers/login" text="SELL TICKETS" />
+                    <LinkButton className="sell-tickets-btn" text="SELL TICKETS" />
                 </Link>)
             }
         </header>

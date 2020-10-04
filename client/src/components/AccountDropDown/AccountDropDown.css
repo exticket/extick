@@ -1,0 +1,32 @@
+.icon-container {
+    position: relative;
+    margin-left: auto;
+    margin-right: 15px;
+
+}
+.account-icon:hover {
+    color: lightgray;
+}
+
+.account-dropdown {
+    width: 150px;
+    position: absolute;
+    top:0px;
+    left: 0px;
+    background-color: rgba(255, 255, 255, 0.425);
+    padding-top: 40px;
+}
+
+.account-dropdown-link {
+    border: none;
+    background-color: transparent;
+    font-weight: 500;
+    color: black;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.account-dropdown-link:hover {
+    background-color: grey;
+    color: white;
+}

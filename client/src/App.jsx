@@ -40,7 +40,7 @@ function App() {
                         <Route path="/sellers/signup" exact component={SignupPage} />
                         <Route path="/sellers/mytickets" exact component={SellerMyTickets} />
                         <Route path="/sellers/publish-ticket" exact component={PublishTicket} />
-                        <Route path="/sellers/ticket/:id/management" exact component={TicketManagement} />
+                        <Route path="/sellers/ticket/management" exact component={TicketManagement} />
                         <Route path="/sellers/SellTickets" exact component={SellTickets} />
                         <Route path="/eventProfile" exact component={EventProfile} />
                         <Route component={NotFound} />
