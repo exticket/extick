@@ -16,39 +16,6 @@ router.post('/', function(req, res, next) {
 
 });
 
-
-
-// router.post('/', passport.authenticate('local'), loginCtrl.validatePassword);
-// router.post('/', passport.authenticate('local'), (req, res,) => {
-//     console.log(res.user)
-//     if (!req.user) {
-//         return res.status(401).send({ message: "login failed" })
-//     }
-//     else
-//     res.send({ ok: true });
-// });
-//-------------------------------------------------------------
-//=------------------------------------------------------------
-
-// exports.isLocalAuthenticated = function(req, res, next) {
-
-// passport.authenticate('local', function(err, user, info) {
-//     if (err) { return next(err); } //error exception
-
-//     // user will be set to false, if not authenticated
-//     if (!user) {
-//         res.status(401).json(info); //info contains the error message
-//     } else {
-//         // if user authenticated maintain the session
-//         req.logIn(user, function() {
-//             // do whatever here on successful login
-//         })
-//     }    
-// })(req, res, next);
-// }
-
-
-
 router.get('/me',
 (req, res, next) => {
     if (!req.user) {
