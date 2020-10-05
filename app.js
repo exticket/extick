@@ -5,16 +5,43 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 const db = require('./db/index');
-db.on('error',console.error.bind(console,'mongo connection error'))
+const passport = require('passport');
+const localStrategy = require('passport-local');
+db.on('error',console.error.bind(console,'mongo connection error'));
+const bcrypt = require('bcrypt');
 
 var usersRouter = require('./routes/users');
 var categoriesRouter = require('./routes/category-router');
 var sellersRouter = require('./routes/seller-router');
 var ticketsRouter = require('./routes/ticket-router');
 var loginRouter = require('./routes/login-router');
+const SellerModel = require('./models/seller-model');
+
+
 
 
 var app = express();
+passport.use(new localStrategy.Strategy(
+  {
+    usernameField: "email",
+    password: "password"
+  },
+  function(email, password, done) {
+    SellerModel.findOne({ email }, function (err, seller) {
+      if (err) { return  done(err) };
+      if (!seller) return done(null, false, { message: 'Wrong Email' });
+      bcrypt.compare(password, seller.password, (err, result) => {
+        if (result === true) {
+            return done(null, seller);
+          } else {
+            return done(null, false, { message: 'Wrong Password' });            //  return res.status(200).json({success:false,message:'incorrect password'}); 
+          }
+        }); 
+       });
+  }
+));
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,6 +51,10 @@ app.use(logger('dev'));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use((req, res, next) => {
   if (process.env.NODE_ENV === 'production') {
@@ -41,6 +72,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Added to serve client static files
 app.use(express.static(path.resolve(__dirname, 'client/build')));
+
 
 
 app.use('/users', usersRouter); 
