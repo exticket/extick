@@ -41,7 +41,15 @@ passport.use(new localStrategy.Strategy(
   }
 ));
 
+passport.serializeUser(function(seller, done) {
+  done(null, seller.id); 
+});
 
+passport.deserializeUser(function(id, done) {
+  SellerModel.findById(id, function(err, user) {
+      done(err, user);
+  });
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
