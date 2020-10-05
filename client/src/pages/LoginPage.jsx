@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../pics/logicon.png'; 
 import { loginRequest } from '../apis/login-Api';
+import { Redirect } from "react-router-dom";
 
 class LoginPage extends Component {
   constructor() {
@@ -10,13 +11,11 @@ class LoginPage extends Component {
       password: '',
       error: '',
     };
-
     this.handlePassChange = this.handlePassChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.dismissError = this.dismissError.bind(this);
   }
-
   dismissError() {
     this.setState({ error: '' });
   }
@@ -32,11 +31,10 @@ class LoginPage extends Component {
       return this.setState({ error: 'Password is required' });
     }
     loginRequest(this.state.email,this.state.password).then(result => {
-      if(result.data.success===true){
-        let seller = result.data.data;
-        return this.setState({ error: 'hello '+ seller.first_name + ' '+seller.last_name });
-      }
-      return this.setState({ error:result.data.message });
+      if(result.data.success){
+        return this.setState({ error:true });}
+        console.log(result.data.message)
+   return this.setState({ error: result.data.message });
     })
 
   }
@@ -54,6 +52,9 @@ class LoginPage extends Component {
   }
 
   render() {
+    if(this.state.error===true){
+      return <Redirect to ='/sellers/selltickets' />
+    }
       return (
       <div className="Login">
        <form onSubmit={this.handleSubmit}>
