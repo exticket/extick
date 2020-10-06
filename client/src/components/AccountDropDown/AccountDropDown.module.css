@@ -1,14 +1,14 @@
-.icon-container {
+.iconContainer {
     position: relative;
     margin-left: auto;
     margin-right: 15px;
 
 }
-.account-icon:hover {
+.accountIcon:hover {
     color: lightgray;
 }
 
-.account-dropdown {
+.accountDropdown {
     z-index: 1;
     width: 150px;
     position: absolute;
@@ -18,7 +18,7 @@
     padding-top: 40px;
 }
 
-.account-dropdown-link {
+.accountDropdownLink {
     border: none;
     background-color: transparent;
     font-weight: 500;
@@ -27,7 +27,7 @@
     width: 100%;
 }
 
-.account-dropdown-link:hover {
+.accountDropdownLink:hover {
     background-color: grey;
     color: white;
 }
