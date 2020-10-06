@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './CardComponent.css';
 import { useHistory } from 'react-router-dom';
+import ModifyTicketIcons from '../ModifyTicketIcons';
 
 
 
 export default function CardComponent({ eventInfo }) {
-
     const history = useHistory();
 
     const dateObject = new Date(eventInfo.ticket_dates);
@@ -38,6 +38,7 @@ export default function CardComponent({ eventInfo }) {
                 <p className="location">{eventInfo.location}</p>
                 {/* <p className="sellerName">{eventInfo.seller_Id}</p> */}
                 <p className="price">{eventInfo.price} ₪</p>
+                {history.location.pathname === '/sellers/mytickets' && <ModifyTicketIcons ticketId={eventInfo._id}/>}
             </div>
         </div>
     )
