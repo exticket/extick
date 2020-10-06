@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SellerContext from '../../SellerContext';
-import AccountDropDown from '../AccountDropDown/AccountDropDown';
+import AccountDropDown from '../AccountDropDown';
 import HelloMsg from '../HelloMsg';
 import LinkButton from '../LinkButton';
 import LoginButton from '../LoginButton';
