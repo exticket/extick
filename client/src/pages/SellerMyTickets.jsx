@@ -8,7 +8,7 @@ export default function SellerMyTickets() {
     const seller = useContext(SellerContext).seller;
     const [myTickets, setMyTickets] = useState([]);
 
-    async function fetchData() {
+    const fetchData = React.useCallback(async function fetchData() {
         try {
             const allTickets = await getAllTickets();
             
@@ -16,11 +16,11 @@ export default function SellerMyTickets() {
         } catch (error) {
             console.log(error);
         }
-    }
+    }, [seller._id]);
 
     useEffect(() => {
         seller && fetchData();
-    }, [seller]);
+    }, [seller, fetchData]);
 
     return (
         <div className="my-tickets-container">

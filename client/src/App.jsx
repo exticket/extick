@@ -6,31 +6,15 @@ import { Homepage, LoginPage, PublishTicket, SellerMyTickets, TicketManagement, 
 import Header from './components/Header';
 import Footer from './components/Footer';
 import NotFound from './pages/NotFound';
-import SellerContext from './SellerContext';
+import { SellerContext, useSellerSingleton } from './SellerContext';
 import { getAllSellers } from './apis/sellersApi';
+import { WithLoginRequired } from './components/WithLoginRequired';
 
 function App() {
-    const [seller, setSeller] = useState(null);
-
-    function LogOut() {
-        setSeller(null);
-    }
-
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const allSellers = await getAllSellers();
-                const secondUser = allSellers[1];
-                setSeller(secondUser);
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchData();
-    }, []);
+    const sellerApi = useSellerSingleton();
 
     return <>
-        <SellerContext.Provider value={{ seller: seller, logOut: LogOut }}>
+        <SellerContext.Provider value={sellerApi}>
             <Router>
                 <Header />
                 <main>
@@ -38,8 +22,8 @@ function App() {
                         <Route path="/" exact component={Homepage} />
                         <Route path="/sellers/login" exact component={LoginPage} />
                         <Route path="/sellers/signup" exact component={SignupPage} />
-                        <Route path="/sellers/mytickets" exact component={SellerMyTickets} />
-                        <Route path="/sellers/publish-ticket" exact component={PublishTicket} />
+                        <Route path="/sellers/mytickets" exact component={WithLoginRequired(SellerMyTickets, LoginPage)} />
+                        <Route path="/sellers/publish-ticket" exact component={WithLoginRequired(PublishTicket, LoginPage)} />
                         <Route path="/ticket/management/:id" exact component={TicketManagement} />
                         <Route path="/sellers/SellTickets" exact component={SellTickets} />
                         <Route path="/eventProfile" exact component={EventProfile} />
