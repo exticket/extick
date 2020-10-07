@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import SellerContext from '../../SellerContext';
+import { useSeller } from '../../SellerContext';
 import AccountDropDown from '../AccountDropDown';
 import HelloMsg from '../HelloMsg';
 import LinkButton from '../LinkButton';
@@ -9,7 +9,7 @@ import Logo from '../Logo';
 
 
 export default function Header() {
-    const seller = useContext(SellerContext).seller;
+    const { seller } = useSeller();
     const pathname = useLocation().pathname;
     return (
         <header>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from '../pics/logicon.png'; 
 import { loginRequest } from '../apis/login-Api';
 import { Redirect } from "react-router-dom";
+import { SellerContext } from "../SellerContext";
 
 class LoginPage extends Component {
   constructor() {
@@ -16,6 +17,7 @@ class LoginPage extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.dismissError = this.dismissError.bind(this);
   }
+
   dismissError() {
     this.setState({ error: '' });
   }
@@ -30,13 +32,15 @@ class LoginPage extends Component {
     if (!this.state.password) {
       return this.setState({ error: 'Password is required' });
     }
-    loginRequest(this.state.email,this.state.password).then(result => {
-      if(result.data.success){
-        return this.setState({ error:true });}
-        console.log(result.data.message)
-   return this.setState({ error: result.data.message });
-    })
 
+    loginRequest(this.state.email,this.state.password)
+    .then(result => {
+      if (result.data.ok) {
+        this.context.recheck();
+        return this.setState({ error: false });}
+        // console.log(result.data.message)
+        return this.setState({ error: result.data.message });
+    });
   }
 
   handleEmailChange(evt) {
@@ -79,5 +83,8 @@ class LoginPage extends Component {
     );
   }
 }
+
+LoginPage.contextType = SellerContext;
+
 export default LoginPage;
 
