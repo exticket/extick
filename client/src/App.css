@@ -144,3 +144,13 @@ footer {
   font-family: Monaco;
   margin-left: 25%;
 }
+
+
+
+
+
+@media screen and (max-width: 1359px) {
+  .tickets-container {
+    width: 75%;
+  }
+}
