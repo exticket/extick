@@ -2,7 +2,7 @@ import React from 'react';
 import url from './apis/backend-url';
 
 const SellerContext = React.createContext({
-  seller: 'initial',
+  seller: undefined,
   recheck: () => {}
 });
 
