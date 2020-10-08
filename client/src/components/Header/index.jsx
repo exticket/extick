@@ -24,7 +24,7 @@ export default function Header() {
             }
 
             {(pathname !== '/sellers/login' && pathname !== '/sellers/mytickets') && (
-                <Link to={seller ? "/sellers/selltickets" : "/sellers/login"}>
+                <Link to="/sellers/selltickets">
                     <LinkButton className="sell-tickets-btn" text="SELL TICKETS" />
                 </Link>)
             }
