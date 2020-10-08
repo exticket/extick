@@ -10,7 +10,7 @@ export default SellerContext;
 export { SellerContext };
 
 export function useSellerSingleton() {
-  const [seller, setSeller] = React.useState('initial');
+  const [seller, setSeller] = React.useState(undefined);
   const [forceUpdate, setForceUpdate] = React.useState(0);
 
   React.useEffect(() => {
@@ -23,7 +23,7 @@ export function useSellerSingleton() {
             setSeller(sellerFromServer.user);
           });
         } else {
-          setSeller('not-loggedin');
+          setSeller(null);
         }
       });
   }, [forceUpdate]);
@@ -33,7 +33,7 @@ export function useSellerSingleton() {
       setForceUpdate((v) => v + 1);
     },
     logOut() {
-      setSeller('not-loggedin');
+      setSeller(null);
     },
     seller
   };

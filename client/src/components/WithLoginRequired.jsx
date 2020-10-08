@@ -7,11 +7,11 @@ export function WithLoginRequired(RealComponent, NotLoggedinComponent) {
       
         const seller = useSeller();
 
-        if (seller.seller === 'initial') {
+        if (seller.seller === undefined) {
             return <div>Checking...</div>
         }
 
-        if (seller.seller !== 'not-loggedin') {
+        if (seller.seller !== null) {
             return <RealComponent />
         }
 
