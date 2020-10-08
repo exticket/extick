@@ -9,6 +9,11 @@ import Logo from '../Logo';
 
 
 export default function Header() {
+    const hideSellTicketBtnPaths = [
+        '/sellers/login',
+        '/sellers/mytickets',
+        '/sellers/selltickets'
+    ]
     const { seller } = useSeller();
     const pathname = useLocation().pathname;
     return (
@@ -23,7 +28,7 @@ export default function Header() {
                 (pathname !== '/sellers/login' && <LoginButton />)
             }
 
-            {(pathname !== '/sellers/login' && pathname !== '/sellers/mytickets') && (
+            {!hideSellTicketBtnPaths.includes(pathname) && (
                 <Link to="/sellers/selltickets">
                     <LinkButton className="sell-tickets-btn" text="SELL TICKETS" />
                 </Link>)
