@@ -18,7 +18,7 @@ function ourAuth(req, res, next) {
     })(req, res, next);
 }
 
-router.post('/', validateLoginDetails, ourAuth, (req, res) => {
+router.post('/login', validateLoginDetails, ourAuth, (req, res) => {
     res.send({ ok: true });
 });
 
@@ -33,5 +33,10 @@ router.get('/me',
     res.send({ user: req.user });
 })
 
+router.get('/logout', function(req, res){
+    req.logout();
+    req.session.destroy();
+
+    return res.send({ message: "logout now" })  });
 
 module.exports = router;
