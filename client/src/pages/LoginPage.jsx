@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../pics/logicon.png'; 
-import { loginRequest } from '../apis/login-Api';
+import { loginRequest } from '../apis/authentication-Api';
 import { Redirect } from "react-router-dom";
 import { SellerContext } from "../SellerContext";
 
@@ -11,6 +11,7 @@ class LoginPage extends Component {
       email: '',
       password: '',
       error: '',
+      validate:false,
     };
     this.handlePassChange = this.handlePassChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -37,8 +38,8 @@ class LoginPage extends Component {
     .then(result => {
       if (result.data.ok) {
         this.context.recheck();
-        return this.setState({ error: false });}
-        // console.log(result.data.message)
+        return this.setState({ validate: true });
+      }
         return this.setState({ error: result.data.message });
     });
   }
@@ -56,8 +57,8 @@ class LoginPage extends Component {
   }
 
   render() {
-    if(this.state.error===true){
-      return <Redirect to ='/sellers/selltickets' />
+    if(this.state.validate===true){
+      return <Redirect to ='/sellers/mytickets' />
     }
       return (
       <div className="Login">
