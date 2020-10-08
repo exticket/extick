@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import EventProfile from './components/EventProfile/EventProfile';
@@ -7,7 +7,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import NotFound from './pages/NotFound';
 import { SellerContext, useSellerSingleton } from './SellerContext';
-import { getAllSellers } from './apis/sellersApi';
 import { WithLoginRequired } from './components/WithLoginRequired';
 
 function App() {
