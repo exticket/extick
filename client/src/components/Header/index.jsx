@@ -11,7 +11,6 @@ import Logo from '../Logo';
 export default function Header() {
     const { seller } = useSeller();
     const pathname = useLocation().pathname;
-    console.log(seller);
     return (
         <header>
             <Logo />
