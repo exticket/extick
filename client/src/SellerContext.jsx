@@ -16,7 +16,7 @@ export function useSellerSingleton() {
   React.useEffect(() => {
     // this is here to show that use effect need to run when forceUpdate change
     forceUpdate.toString();
-    fetch(`${url}/login/me`)
+    fetch(`${url}/authentication/me`)
       .then((resp) => {
         if (resp.ok) {
           resp.json().then((sellerFromServer) => {
