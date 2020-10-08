@@ -14,7 +14,7 @@ var usersRouter = require('./routes/users');
 var categoriesRouter = require('./routes/category-router');
 var sellersRouter = require('./routes/seller-router');
 var ticketsRouter = require('./routes/ticket-router');
-var loginRouter = require('./routes/login-router');
+var authenticationRouter = require('./routes/authentication-router');
 const SellerModel = require('./models/seller-model');
 
 
@@ -87,7 +87,7 @@ app.use('/users', usersRouter);
 app.use('/category', categoriesRouter);  
 app.use('/seller', sellersRouter);
 app.use('/ticket', ticketsRouter);
-app.use('/login', loginRouter);
+app.use('/authentication', authenticationRouter);
 
 
 
