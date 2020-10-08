@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Redirect, useLocation } from 'react-router-dom';
 
-import { useSeller } from "../SellerContext";
+import SellerContext from "../SellerContext";
 
 export function WithLoginRequired(RealComponent, NotLoggedinComponent) {
     return function WithLoginRequiredComponent() {
-      
-        const seller = useSeller();
+        const location = useLocation();
 
-        if (seller.seller === undefined) {
-            return <div>Checking...</div>
+        const { seller } = useContext(SellerContext);
+        
+        console.log(seller); 
+        if (seller === undefined) {
+            return <div>Checking if logged in...</div>
         }
 
-        if (seller.seller !== null) {
+        if (seller !== null) {
             return <RealComponent />
         }
-
-        return <NotLoggedinComponent />
+        console.log(location.pathname); 
+        // return <NotLoggedinComponent />
+        return <Redirect to={{pathname: "/sellers/login", state: {prevUrl: location.pathname}}}/>
     };
-  }
+}
