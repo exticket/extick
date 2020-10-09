@@ -21,10 +21,10 @@ function App() {
                         <Route path="/" exact component={Homepage} />
                         <Route path="/sellers/login" exact component={LoginPage} />
                         <Route path="/sellers/signup" exact component={SignupPage} />
-                        <Route path="/sellers/mytickets" exact component={WithLoginRequired(SellerMyTickets, LoginPage)} />
-                        <Route path="/sellers/publish-ticket" exact component={WithLoginRequired(PublishTicket, LoginPage)} />
+                        <Route path="/sellers/mytickets" exact component={WithLoginRequired(SellerMyTickets)} />
+                        <Route path="/sellers/publish-ticket" exact component={WithLoginRequired(PublishTicket)} />
                         <Route path="/ticket/management/:id" exact component={TicketManagement} />
-                        <Route path="/sellers/SellTickets" exact component={WithLoginRequired(SellTickets, LoginPage)} />
+                        <Route path="/sellers/SellTickets" exact component={WithLoginRequired(SellTickets)} />
                         <Route path="/eventProfile" exact component={EventProfile} />
                         <Route component={NotFound} />
                     </Switch>
