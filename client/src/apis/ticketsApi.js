@@ -10,7 +10,7 @@ export const getAllTickets = async () => {
     return res.data.data;
 }
 
-export const deleteTicket = async () => {
-    const res = await api.delete('/:id');
+export const deleteTicket = async (id) => {
+    const res = await api.delete(`/${id}`);
     return res.data.data;
 }
