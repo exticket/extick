@@ -6,7 +6,11 @@ import SellerContext from '../SellerContext';
 export default function SellerMyTickets() {
     const { seller } = useContext(SellerContext);
     const [myTickets, setMyTickets] = useState([]);
-
+    
+    function onTicketDeleted(id) {
+        setMyTickets(prevTickets => prevTickets.filter(ticket => ticket._id !== id))
+    }
+    
     useEffect(() => {
         (async () => {
             try {
@@ -23,7 +27,7 @@ export default function SellerMyTickets() {
         <div className="my-tickets-container">
             <h2>My tickets:</h2>
 
-            <TicketsContainer tickets={myTickets} />
+            <TicketsContainer tickets={myTickets} onTicketDeleted={onTicketDeleted}/>
         </div>
     )
 }

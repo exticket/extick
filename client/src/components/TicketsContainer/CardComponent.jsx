@@ -5,7 +5,7 @@ import ModifyTicketIcons from '../ModifyTicketIcons';
 
 
 
-export default function CardComponent({ eventInfo }) {
+export default function CardComponent({ eventInfo, onTicketDeleted }) {
     const history = useHistory();
 
     const dateObject = new Date(eventInfo.ticket_dates);
@@ -38,7 +38,7 @@ export default function CardComponent({ eventInfo }) {
                 <p className="location">{eventInfo.location}</p>
                 {/* <p className="sellerName">{eventInfo.seller_Id}</p> */}
                 <p className="price">{eventInfo.price} ₪</p>
-                {history.location.pathname === '/sellers/mytickets' && <ModifyTicketIcons ticketId={eventInfo._id}/>}
+                {history.location.pathname === '/sellers/mytickets' && <ModifyTicketIcons ticketId={eventInfo._id} onTicketDeleted={onTicketDeleted}/>}
             </div>
         </div>
     )

@@ -6,13 +6,13 @@ import { Link, useHistory } from 'react-router-dom';
 import DeleteDialog from '../DeleteDialog';
 import {deleteTicket} from '../../apis/ticketsApi';
 
-export default function ModifyTicketIcons({ ticketId }) {
+export default function ModifyTicketIcons({ ticketId, onTicketDeleted }) {
     const [openDialog, setOpenDialog] = useState(false);
     const history = useHistory();
 
     function deleteHandler() {
         deleteTicket(ticketId)
-        .then(ticket => history.go(0)) //refresh page after deletion
+        .then(res => onTicketDeleted(res.data._id)) //refresh page after deletion
         .catch(error => console.log(error))
     }
     
