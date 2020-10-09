@@ -15,8 +15,8 @@ export default function DeleteDialog({ deleteHandler, open, setOpen }) {
     return (
         <div>
             <Dialog
+                onClick={event => event.stopPropagation()}
                 open={open}
-                onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
