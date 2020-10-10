@@ -82,14 +82,6 @@ const updateCategory = (req, res) => {
         })
     })
 }  
-// const deleteCategory = (req,res)=>{
-//          Category.findOneAndDelete({ _id:req.params.id},(err,user)=>{
-//             if(err){return res.status(400).json({success:false,error:err.message})}
-//             if(!user){
-//                 return res.status(400).json({success:false,error:err.message})}
-//                 return res.status(200).json({success:true,data:user})
-//                     }).catch(err=>console.log(err))
-// }
 const deleteCategory = (req,res)=>{
     Category.findOneAndDelete({ _id:req.params.id}).then(category =>{
         if(!category){
