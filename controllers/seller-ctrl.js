@@ -85,14 +85,15 @@ const updateSeller = (req, res) => {
         })
     })
 }  
+
 const deleteSeller = (req,res)=>{
-         Seller.findOneAndDelete({ _id:req.params.id},(err,seller)=>{
-            if(err){return res.status(400).json({success:false,error:err.message})}
-            if(!seller){
-                return res.status(400).json({success:false,error:err.message})}
-                return res.status(200).json({success:true,data:seller})
-                    }).catch(err=>console.log(err))
+    Seller.findOneAndDelete({ _id:req.params.id}).then(seller =>{
+        if(!seller){
+        return res.status(400).json({success:false,error:'Seller not found'})}
+        return res.status(200).json({success:true,data:seller})  
+    }).catch(err=>console.log(err))
 }
+
 const getSellerbyid = (req,res)=>{
         if(!mongoose.Types.ObjectId.isValid(req.params.id)){
             return res.status(400).json({success:false,message:'Id not valid'})}
