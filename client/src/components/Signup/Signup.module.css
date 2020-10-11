@@ -1,0 +1,33 @@
+.formContainer form {
+    width: 325px;
+}
+
+.formContainer h1 {
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.formContainer button[type="submit"] {
+    font-weight: bold;
+    background-color: #49EEDC;
+    padding: 10px 0;
+}
+
+.formContainer button[type="submit"]:disabled {
+    cursor: not-allowed ;
+    pointer-events: auto ;
+}
+
+.formContainer button[type="submit"]:hover {
+    background-color: #40d3c2 !important;
+}
+
+.formContainer form>* {
+    width: 100%;
+    min-height: 50px;
+    margin-bottom: 20px !important;
+}
+
+.success div fieldset{
+    border: 2px solid lightgreen !important;
+}

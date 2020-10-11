@@ -79,7 +79,7 @@ header {
 }
 
 button {
-   cursor: pointer;
+  cursor: pointer;
 }
 
 .link-button:active {
@@ -145,9 +145,17 @@ footer {
   margin-left: 25%;
 }
 
+.loginSignupPage {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
 
-
-
+.verticalLine {
+  border-left: 1px solid lightgray;
+  align-self: center;
+  height: 500px;
+}
 
 @media screen and (max-width: 1359px) {
   .tickets-container {

@@ -16,6 +16,6 @@ export function WithLoginRequired(RealComponent) {
         if (seller !== null) {
             return <RealComponent />
         }
-        return <Redirect to={{pathname: "/sellers/login", state: {prevUrl: location.pathname}}}/>
+        return <Redirect to={{pathname: "/sellers/selltickets/login", state: {prevUrl: location.pathname}}}/>
     };
 }
