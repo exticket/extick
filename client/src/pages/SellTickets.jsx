@@ -68,7 +68,7 @@ class SellTickets extends Component {
             <input placeholder="row" type="text"/>
   
             <label for="seller_Id">Seller Id:</label>
-            <input placeholder="seller_Id" type="text"/>//from dataBase
+            <input placeholder="seller_Id" type="text"/>
   
             <label for="description">description:</label>
             <textarea name="comment" >Enter text here...</textarea>    
