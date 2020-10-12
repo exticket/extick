@@ -40,6 +40,13 @@ export default function Signup() {
         }
         else {
             switch (name) {
+                case "firstName":
+                case "lastName":
+                    if (!value.match(/^[a-z ,.'-]+$/i)) {
+                        isThereAnError = true;
+                        errorMessage = `${camelCaseToSentence([name] + '')} doesn't make sense.`
+                    }
+                    break;
                 case "email":
                     if (!isEmail(value)) {
                         isThereAnError = true;
