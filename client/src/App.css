@@ -64,17 +64,22 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 30vh;
-  text-align: center;
-  background-color: #b9b9b9;
-  font-size: 2rem;
+  background-image: url(./pics/homepagepic.png);
+  height: 211px;
+  left: 64px;
+  top: 138px;
+  font-family: SF Pro Text;
+  font-style: normal;
   font-weight: 500;
-  font-family: 'Times New Roman', Times, serif;
+  font-size: 36px;
+  line-height: 44px;
+  text-align: center;
+  color: #FFFFFF;
 }
 
 header {
   display: flex;
-  background-color: #fafafa;
+  background-color: #030303;
   padding: 15px 5vw;
 }
 
