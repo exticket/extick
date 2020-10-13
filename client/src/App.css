@@ -80,7 +80,7 @@ main {
 header {
   display: flex;
   background-color: #030303;
-  padding: 15px 5vw;
+  padding: 10px 5vw;
 }
 
 button {
