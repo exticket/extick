@@ -14,13 +14,13 @@
     position: absolute;
     top:0px;
     left: 0px;
-    background-color: rgba(255, 255, 255, 0.425);
+    /* background-color: rgba(255, 255, 255, 0.425); */
     padding-top: 40px;
 }
 
 .accountDropdownLink {
     border: none;
-    background-color: transparent;
+    background-color:  white;
     font-weight: 500;
     color: black;
     padding: 10px 0;
@@ -28,6 +28,6 @@
 }
 
 .accountDropdownLink:hover {
-    background-color: grey;
+    background-color:#009FDB;
     color: white;
 }
