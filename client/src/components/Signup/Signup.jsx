@@ -39,30 +39,24 @@ export default function Signup() {
         }
         else {
             switch (name) {
-                case "firstName":
-                case "lastName":
-                    if (!value.match(/^[(\p{L}) ,.'-]+$/i)) {
-                        errorMessage = `${camelCaseToSentence([name] + '')} doesn't make sense.`
-                    }
-                    break;
                 case "email":
                     if (!isEmail(value)) {
-                        errorMessage = 'Please enter a valid email.'
+                        errorMessage = 'Please enter a valid email.';
                     }
                     break;
                 case "password":
                     if (!value.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d\W]{6,}/g)) {
-                        errorMessage = 'At least 6 characters, one uppercase, one lowercase and one digit.'
+                        errorMessage = 'At least 6 characters, one uppercase, one lowercase and one digit.';
                     }
                     break;
                 case "confirmPassword":
                     if (value !== formData.password) {
-                        errorMessage = `Passwords don't match.`
+                        errorMessage = `Passwords don't match.`;
                     }
                     break;
                 case "phoneNumber":
                     if (!isMobilePhone(value, 'he-IL')) {
-                        errorMessage = 'Please enter a valid phone number.'
+                        errorMessage = 'Please enter a valid phone number.';
                     }
                     break;
                 default:
