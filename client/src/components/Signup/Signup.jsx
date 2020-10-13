@@ -41,7 +41,7 @@ export default function Signup() {
             switch (name) {
                 case "firstName":
                 case "lastName":
-                    if (!value.match(/^[a-z ,.'-]+$/i)) {
+                    if (!value.match(/^[(\p{L}) ,.'-]+$/i)) {
                         errorMessage = `${camelCaseToSentence([name] + '')} doesn't make sense.`
                     }
                     break;
