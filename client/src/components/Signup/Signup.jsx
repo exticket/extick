@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './Signup.module.css';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -6,13 +6,13 @@ import { isEmpty, isEmail, isMobilePhone } from 'validator';
 import { camelCaseToSentence } from '../../utils';
 
 export default function Signup() {
-    const [isAllFieldsValid, setIsAllFieldsValid] = useState(false);
 
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
         email: "",
         password: "",
+        confirmPassword: "",
         phoneNumber: "",
     });
 
@@ -21,6 +21,7 @@ export default function Signup() {
         lastName: null,
         email: null,
         password: null,
+        confirmPassword: null,
         phoneNumber: null,
     })
 
@@ -32,10 +33,8 @@ export default function Signup() {
     function validateField(event) {
         const { value, name } = event.target;
         let errorMessage = null;
-        let isThereAnError = false;
 
         if (isEmpty(value, { ignore_whitespace: true })) {
-            isThereAnError = true;
             errorMessage = `${camelCaseToSentence([name] + '')} is required`;
         }
         else {
@@ -43,55 +42,75 @@ export default function Signup() {
                 case "firstName":
                 case "lastName":
                     if (!value.match(/^[a-z ,.'-]+$/i)) {
-                        isThereAnError = true;
                         errorMessage = `${camelCaseToSentence([name] + '')} doesn't make sense.`
                     }
                     break;
                 case "email":
                     if (!isEmail(value)) {
-                        isThereAnError = true;
                         errorMessage = 'Please enter a valid email.'
                     }
                     break;
                 case "password":
                     if (!value.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d\W]{6,}/g)) {
-                        isThereAnError = true;
                         errorMessage = 'At least 6 characters, one uppercase, one lowercase and one digit.'
+                    }
+                    break;
+                case "confirmPassword":
+                    if (value !== formData.password) {
+                        errorMessage = `Passwords don't match.`
                     }
                     break;
                 case "phoneNumber":
                     if (!isMobilePhone(value, 'he-IL')) {
-                        isThereAnError = true;
                         errorMessage = 'Please enter a valid phone number.'
                     }
                     break;
+                default:
             }
         }
 
-        setErrorMessages(prevData => { return { ...prevData, [name]: isThereAnError ? errorMessage : "" } });
+        setErrorMessages(prevData => { return { ...prevData, [name]: errorMessage ? errorMessage : "" } });
     }
 
-    useEffect(() => {
-        let isAllFieldsValid = true;
+    function isValidationsDone() {
         for (const field in errorMessages) {
             if (errorMessages[field] !== "")
-                isAllFieldsValid = false;
+                return false;
         }
+        return true;
+    }
 
-        isAllFieldsValid ? setIsAllFieldsValid(true) : setIsAllFieldsValid(false);
+    function isThereInError(errorMessage) {
+        if (errorMessage === null) return false;
+        if (errorMessage === "") return false;
+        return true;
+    }
 
-    }, [errorMessages])
+    function onChangeHandler(event) {
+        updateFormData(event);
+        validateField(event);
+    }
+
+    const {
+        firstName: firstNameError,
+        lastName: lastNameError,
+        email: emailError,
+        password: passwordError,
+        confirmPassword: confirmPasswordError,
+        phoneNumber: phoneNumberError
+    } = errorMessages;
 
     return (
         <div className={styles.formContainer}>
             <h1>Sign Up</h1>
             <form method="GET" noValidate >
-                <TextField className={errorMessages.firstName === "" ? styles.success : null} autoComplete="on" onChange={(event) => { updateFormData(event); validateField(event); }} /* onBlur={validateField} */ error={errorMessages.firstName && errorMessages.firstName !== ""} helperText={errorMessages.firstName} required variant="outlined" label="First Name" name="firstName" />
-                <TextField className={errorMessages.lastName === "" ? styles.success : null} autoComplete="on" onChange={(event) => { updateFormData(event); validateField(event); }} /* onBlur={validateField} */ error={errorMessages.lastName && errorMessages.lastName !== ""} helperText={errorMessages.lastName} required variant="outlined" label="Last Name" name="lastName" />
-                <TextField className={errorMessages.email === "" ? styles.success : null} autoComplete="on" onChange={(event) => { updateFormData(event); validateField(event); }} /* onBlur={validateField} */ error={errorMessages.email && errorMessages.email !== ""} helperText={errorMessages.email} required type="email" variant="outlined" label="Email Address" name="email" />
-                <TextField className={errorMessages.password === "" ? styles.success : null} autoComplete="on" onChange={(event) => { updateFormData(event); validateField(event); }} /* onBlur={validateField} */ error={errorMessages.password && errorMessages.password !== ""} helperText={errorMessages.password} required type="password" variant="outlined" label="Password" name="password" />
-                <TextField className={errorMessages.phoneNumber === "" ? styles.success : null} autoComplete="on" onChange={(event) => { updateFormData(event); validateField(event); }} /* onBlur={validateField} */ error={errorMessages.phoneNumber && errorMessages.phoneNumber !== ""} helperText={errorMessages.phoneNumber} required type="tel" variant="outlined" label="Phone Number" name="phoneNumber" />
-                <Button disabled={!isAllFieldsValid} type="submit">Sign Up</Button>
+                <TextField className={firstNameError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(firstNameError)} helperText={firstNameError} required variant="outlined" label="First Name" name="firstName" />
+                <TextField className={lastNameError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(lastNameError)} helperText={lastNameError} required variant="outlined" label="Last Name" name="lastName" />
+                <TextField className={emailError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(emailError)} helperText={emailError} required type="email" variant="outlined" label="Email Address" name="email" />
+                <TextField className={passwordError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(passwordError)} helperText={passwordError} required type="password" variant="outlined" label="Password" name="password" />
+                <TextField disabled={passwordError === null || isThereInError(passwordError)} className={confirmPasswordError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(confirmPasswordError)} helperText={confirmPasswordError} required type="password" variant="outlined" label="Confirm Password" name="confirmPassword" />
+                <TextField className={phoneNumberError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(phoneNumberError)} helperText={phoneNumberError} required type="tel" variant="outlined" label="Phone Number" name="phoneNumber" />
+                <Button disabled={!isValidationsDone()} type="submit">Sign Up</Button>
             </form>
         </div>
     )
