@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { isEmpty, isEmail, isMobilePhone } from 'validator';
 import { camelCaseToSentence } from '../../utils';
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { allCitiesInIsrael } from '../../apis/cities';
 
 export default function Signup() {
 
@@ -11,6 +13,7 @@ export default function Signup() {
         firstName: "",
         lastName: "",
         email: "",
+        city: "",
         password: "",
         confirmPassword: "",
         phoneNumber: "",
@@ -20,18 +23,31 @@ export default function Signup() {
         firstName: null,
         lastName: null,
         email: null,
+        city: null,
         password: null,
         confirmPassword: null,
         phoneNumber: null,
     })
 
-    function updateFormData(event) {
-        const { name, value } = event.target;
+    function updateFormData(event, dropdownOption) {
+        let { name, value } = event.target;
+
+        if(dropdownOption || !name) {
+            name = "city";
+            value = dropdownOption ? dropdownOption.name : "";
+        }
+
         setFormData(prevData => { return { ...prevData, [name]: value }; });
     }
 
-    function validateField(event) {
-        const { value, name } = event.target;
+    function validateField(event, dropdownOption) {
+        let { value, name } = event.target;
+
+        if(dropdownOption || !name) {
+            name = "city";
+            value = dropdownOption ? dropdownOption.name : "";
+        }
+
         let errorMessage = null;
 
         if (isEmpty(value, { ignore_whitespace: true })) {
@@ -80,15 +96,16 @@ export default function Signup() {
         return true;
     }
 
-    function onChangeHandler(event) {
-        updateFormData(event);
-        validateField(event);
+    function onChangeHandler(event, dropdownOption) {
+        updateFormData(event, dropdownOption);
+        validateField(event, dropdownOption);
     }
 
     const {
         firstName: firstNameError,
         lastName: lastNameError,
         email: emailError,
+        city: cityError,
         password: passwordError,
         confirmPassword: confirmPasswordError,
         phoneNumber: phoneNumberError
@@ -101,6 +118,18 @@ export default function Signup() {
                 <TextField className={firstNameError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(firstNameError)} helperText={firstNameError} required variant="outlined" label="First Name" name="firstName" />
                 <TextField className={lastNameError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(lastNameError)} helperText={lastNameError} required variant="outlined" label="Last Name" name="lastName" />
                 <TextField className={emailError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(emailError)} helperText={emailError} required type="email" variant="outlined" label="Email Address" name="email" />
+                <Autocomplete
+                    options={allCitiesInIsrael}
+                    getOptionLabel={(option) => option.name}
+                    onChange={(event,dropdownOption) => onChangeHandler(event,dropdownOption)}
+                    renderInput={(params) => {
+                        const inputProps = params.inputProps;
+                        inputProps.autocomplete = "new-password";
+                        return (
+                            <TextField {...params} onBlur={onChangeHandler} className={cityError === "" ? styles.success : null} inputProps={inputProps} error={isThereInError(cityError)} helperText={cityError} required label="City" variant="outlined" name="city" />
+                        )
+                    }}
+                />
                 <TextField className={passwordError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(passwordError)} helperText={passwordError} required type="password" variant="outlined" label="Password" name="password" />
                 <TextField disabled={passwordError === null || isThereInError(passwordError)} className={confirmPasswordError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(confirmPasswordError)} helperText={confirmPasswordError} required type="password" variant="outlined" label="Confirm Password" name="confirmPassword" />
                 <TextField className={phoneNumberError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(phoneNumberError)} helperText={phoneNumberError} required type="tel" variant="outlined" label="Phone Number" name="phoneNumber" />
