@@ -14,6 +14,7 @@ const createSeller = (req,res) => {
     bcrypt.hash(body.password, saltRounds,(err,hash) => {
         console.log("secret hash");
         body.password= hash;
+        body.email = body.email.toLowerCase();
         const seller = new Seller(body);        if(!seller){
         return res.status(400).json( {
             success: false,
