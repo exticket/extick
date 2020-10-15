@@ -14,15 +14,10 @@ const ticketSchema = new mongoose.Schema(
 
         row:{type:String, required:false},
 
-        seller_Id:{type:String, required:true},
+        seller_Id:{type:String, required:true, index: true, sparse: true},
 
         category_Id:{type:String, required:true},
     },
     {timestamps:true}
 );
 module.exports = mongoose.model('Ticket', ticketSchema);
-
-
-
-
-
