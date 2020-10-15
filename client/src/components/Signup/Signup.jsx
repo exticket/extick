@@ -6,6 +6,7 @@ import { isEmpty, isEmail, isMobilePhone } from 'validator';
 import { camelCaseToSentence } from '../../utils';
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { allCitiesInIsrael } from '../../apis/cities';
+import { createSeller } from '../../apis/sellersApi';
 
 export default function Signup() {
 
@@ -64,6 +65,12 @@ export default function Signup() {
                     if (!value.match(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d\W]{6,}/g)) {
                         errorMessage = 'At least 6 characters, one uppercase, one lowercase and one digit.';
                     }
+                    if(errorMessages.confirmPassword === "") {
+                        setErrorMessages(prevErrors => {return {...prevErrors, confirmPassword:"Passwords don't match."}});
+                    }
+                    else if(errorMessages.confirmPassword != null && value === formData.confirmPassword) {
+                        setErrorMessages(prevErrors => {return {...prevErrors, confirmPassword:""}});
+                    }
                     break;
                 case "confirmPassword":
                     if (value !== formData.password) {
@@ -101,6 +108,23 @@ export default function Signup() {
         validateField(event, dropdownOption);
     }
 
+    async function onSubmitHandler(event) {
+        event.preventDefault();
+        try {
+            const sellerId = await createSeller({
+                first_name: formData.firstName,
+                last_name: formData.lastName,
+                city: formData.city,
+                email: formData.email,
+                tel: formData.phoneNumber,
+                password: formData.password,
+            })
+            console.log(sellerId);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const {
         firstName: firstNameError,
         lastName: lastNameError,
@@ -114,7 +138,7 @@ export default function Signup() {
     return (
         <div className={styles.formContainer}>
             <h1>Sign Up</h1>
-            <form method="GET" noValidate >
+            <form noValidate onSubmit={onSubmitHandler}>
                 <TextField className={firstNameError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(firstNameError)} helperText={firstNameError} required variant="outlined" label="First Name" name="firstName" />
                 <TextField className={lastNameError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(lastNameError)} helperText={lastNameError} required variant="outlined" label="Last Name" name="lastName" />
                 <TextField className={emailError === "" ? styles.success : null} autoComplete="on" onChange={onChangeHandler} error={isThereInError(emailError)} helperText={emailError} required type="email" variant="outlined" label="Email Address" name="email" />
