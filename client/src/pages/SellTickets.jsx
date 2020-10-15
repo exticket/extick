@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Date from '../components/Sell/DatePicker';
-// import Event from '../components/Sell/EventName';
 // import TimePicker from '../components/Sell/TimePicker';
 
 // function SellTickets() {
@@ -40,6 +39,7 @@ class SellTickets extends Component {
         return (
         <div className="SellTicket">
          {/* <form onSubmit={this.handleSubmit}> */}
+         {/* <form method="POST" action="/"> */}
          <form>
              <h1>Sell Ticket Page</h1>
   
