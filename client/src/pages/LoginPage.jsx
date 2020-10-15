@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../pics/logicon.png'; 
 import { loginRequest } from '../apis/login-Api';
+import { SellTickets } from '.';
 
 class LoginPage extends Component {
   constructor() {
@@ -61,7 +62,7 @@ class LoginPage extends Component {
            <h1>Login Page</h1>
            <img	src={logo} alt="logo" width="100px" height="100px" />
           <input placeholder="Email" type="email" data-test="email" value={this.state.email} onChange={this.handleEmailChange} />
-
+          
           <input placeholder="Password" type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
       
           <button  type="submit">Log in</button>

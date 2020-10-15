@@ -9,4 +9,9 @@ export const getAllTickets = async () => {
     const res = await api.get('/');
     return res.data.data;
 }
+export const createTickets = async () => {
+    const res = await api.POST('/');
+    return res.data.data;
+
+}
 

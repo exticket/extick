@@ -36,7 +36,9 @@ const createTicket = (req,res) => {
 const getTickets = (req,res) => {
    Ticket.find()
         .then(tickets => {
-                return res.status(200).json({ success:true,data:tickets});
+                return res.status(200).json({ success:true,data:tickets, message: 'Could not get tickets!'});
+               
+
         })
         .catch(error => {
             return res.status(400).json({
