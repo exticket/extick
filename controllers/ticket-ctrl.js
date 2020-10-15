@@ -46,6 +46,23 @@ const getTickets = (req, res) => {
             })
         })
 }
+
+const getMyTickets = (req, res) => {
+    Ticket.find({
+        seller_Id: req.user.id
+    })
+        .then(tickets => {
+            return res.status(200).json({ success: true, data: tickets });
+        })
+        .catch(error => {
+            return res.status(400).json({
+                success: false,
+                error: error,
+                message: 'Could not get tickets!'
+            })
+        })
+}
+
 const updateTicket = (req, res) => {
     const body = req.body
     if (!body) {
@@ -55,7 +72,14 @@ const updateTicket = (req, res) => {
 
         })
     }
-    Ticket.findOne({ _id: req.params.id })
+
+    const findOneQuery = { _id: req.params.id };
+
+    if (!req.user.isAdmin) {
+        findOneQuery.seller_Id = req.user.id;
+    }
+
+    Ticket.findOne(findOneQuery)
         .then(Ticket => {
             Ticket = transferData(Ticket, body);
             Ticket.save()
@@ -103,7 +127,7 @@ const getTicketbyid = (req, res) => {
         return res.status(200).json({ success: true, data: ticket })
     }).catch(err => res.status(400).json({ success: false, message: 'ticket request', error: err.message }))
 }
-module.exports = { getTickets, createTicket, updateTicket, deleteTicket, getTicketbyid }
+module.exports = { getTickets, createTicket, updateTicket, deleteTicket, getTicketbyid, getMyTickets }
 
 function transferData(Ticket, body) {
     Ticket.ticket_title = body.ticket_title;

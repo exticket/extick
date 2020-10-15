@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === "production") {
     connectionString.pathname = 'extick';
 }
 
-
+// mongoose.set('debug', true)
 
 mongoose.connect(connectionString.toString(),
     { useNewUrlParser: true, useUnifiedTopology: true })

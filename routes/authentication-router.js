@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require("passport");
+const { loginRequired } = require('../controllers/utils');
 const router = express.Router();
 
 
@@ -22,14 +23,7 @@ router.post('/login', validateLoginDetails, ourAuth, (req, res) => {
     res.send({ ok: true });
 });
 
-router.get('/me',
-(req, res, next) => {
-    if (!req.user) {
-        return res.status(401).send({ message: "You need to login" })
-    } else {
-        next();
-    }
-}, (req, res) => {
+router.get('/me', loginRequired, (req, res) => {
     res.send({ user: req.user });
 })
 
