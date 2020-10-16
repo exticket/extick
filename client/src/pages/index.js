@@ -3,10 +3,9 @@ import LoginPage from './LoginPage';
 import PublishTicket from './PublishTicket';
 import SellerMyTickets from './SellerMyTickets';
 import TicketManagement from './TicketManagement';
-import SignupPage from './SignupPage';
+import SignupPage from './LoginSignupPage';
 import SellTickets from './SellTickets';
 import TicketDetails from './TicketDetails';
-import TimePicker from '../components/Sell/TimePicker';
+import LoginSignupPage from './LoginSignupPage'
 
-
-export { Homepage, LoginPage, PublishTicket, SellerMyTickets, TicketManagement, SignupPage, SellTickets, TicketDetails,TimePicker };
+export { Homepage, LoginPage, PublishTicket, SellerMyTickets, TicketManagement, SignupPage, SellTickets, TicketDetails, LoginSignupPage };

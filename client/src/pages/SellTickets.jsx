@@ -94,26 +94,6 @@ import Date from '../components/Sell/DatePicker';
 import Button from '@material-ui/core/Button';
 
 
-handleSubmit(evt) {
-  evt.preventDefault();
-
-  if (!this.state.email) {
-    return this.setState({ error: 'Email is required' });
-  }
-
-  if (!this.state.password) {
-    return this.setState({ error: 'Password is required' });
-  }
-  loginRequest(this.state.email,this.state.password).then(result => {
-    if(result.data.success===true){
-      let seller = result.data.data;
-      return this.setState({ error: 'hello '+ seller.first_name + ' '+seller.last_name });
-    }
-    return this.setState({ error:result.data.message });
-  })
-
-}
-
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -2,7 +2,7 @@ import axios from 'axios';
 import backendUrl from './backend-url';
 
 const api = axios.create({
-    baseURL:`${backendUrl}/ticket`
+    baseURL: `${backendUrl}/ticket`
 })
 
 export const getAllTickets = async () => {
@@ -15,3 +15,7 @@ export const createTickets = async () => {
 
 }
 
+export const deleteTicket = async (id) => {
+    const res = await api.delete('/' + id);
+    return res.data;
+}
