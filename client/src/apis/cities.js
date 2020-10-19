@@ -5001,6 +5001,9 @@ export const allCitiesInIsrael =
             name: "Zova"
         },
         {
+
+        },
+        {
             id: "3791",
             name: "Zufim"
         },

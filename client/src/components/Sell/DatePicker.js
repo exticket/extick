@@ -19,7 +19,6 @@ function Date() {
                 scrollableMonthYearDropdown
             />
         </div>
-
     )
 }
 export default Date;
