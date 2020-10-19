@@ -1,101 +1,101 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import Date from '../components/Sell/DatePicker';
-import Dropdown from '../components/Sell/Category';
+// import React from 'react';
+// import TextField from '@material-ui/core/TextField';
+// import { makeStyles } from '@material-ui/core/styles';
+// import Date from '../components/Sell/DatePicker';
+// import Dropdown from '../components/Sell/Category';
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+// const useStyles = makeStyles((theme) => ({
+//   root: {
    
-    display: 'flex',
-    flexWrap: 'wrap',
-    margin: theme.spacing(1),
+//     display: 'flex',
+//     flexWrap: 'wrap',
+//     margin: theme.spacing(1),
 
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: '25ch',
-  },
-}));
+//   },
+//   textField: {
+//     marginLeft: theme.spacing(1),
+//     marginRight: theme.spacing(1),
+//     width: '25ch',
+//   },
+// }));
 
 
 
-export default function LayoutTextFields() {
-  const classes = useStyles();
+// export default function LayoutTextFields() {
+//   const classes = useStyles();
 
-  return (
-    <div className={classes.root}>
-      <form action="">
-      <div>
-      <h1>Sell Tickets</h1>
+//   return (
+//     <div className={classes.root}>
+//       <form action="">
+//       <div>
+//       <h1>Sell Tickets</h1>
       
-        <TextField          
-          label="Catgoery"
-          id="outlined-required"
-          defaultValue={<Date/>}
-          className={classes.textField}
-          margin="normal"
-          variant="outlined"
-          Dropdown
-        />
-        <Dropdown/>
-        <Date/>
+//         <TextField          
+//           label="Catgoery"
+//           id="outlined-required"
+//           defaultValue={<Date/>}
+//           className={classes.textField}
+//           margin="normal"
+//           variant="outlined"
+//           Dropdown
+//         />
+//         <Dropdown/>
+//         <Date/>
 
-         <TextField
-          id="outlined-margin-event name"
-          label="Event name"
-          defaultValue=""
-          className={classes.textField}
-          margin="normal"
-          variant="outlined"
-        />
-        <TextField
-          id="outlined-full-width"
-          label="Descripton(optional)"
-          style={{ margin: 8 }}
-          placeholder="..."
-          helperText="describe the event!"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="outlined"
-          // style={{ /margin:8,/ width: '400px'}}
+//          <TextField
+//           id="outlined-margin-event name"
+//           label="Event name"
+//           defaultValue=""
+//           className={classes.textField}
+//           margin="normal"
+//           variant="outlined"
+//         />
+//         <TextField
+//           id="outlined-full-width"
+//           label="Descripton(optional)"
+//           style={{ margin: 8 }}
+//           placeholder="..."
+//           helperText="describe the event!"
+//           fullWidth
+//           margin="normal"
+//           InputLabelProps={{
+//             shrink: true,
+//           }}
+//           variant="outlined"
+//           // style={{ /margin:8,/ width: '400px'}}
 
-        />
-         <TextField
-          id="outlined-required"
-          label="Location"
-          defaultValue="..."
-          variant="outlined"
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          id="outlined-required"
-          label="Select Date"
-          defaultValue="..."
-          variant="outlined"
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          id="outlined-required"
-          label="How much you want to get paid per ticket?"
-          defaultValue="..."
-          helperText="Enter your price"
-          variant="outlined"
-          className={classes.textField}
-          margin="normal"
-        />
-      </div>
-      </form>
-    </div>
-  );
-}
+//         />
+//          <TextField
+//           id="outlined-required"
+//           label="Location"
+//           defaultValue="..."
+//           variant="outlined"
+//           className={classes.textField}
+//           margin="normal"
+//         />
+//         <TextField
+//           id="outlined-required"
+//           label="Select Date"
+//           defaultValue="..."
+//           variant="outlined"
+//           className={classes.textField}
+//           margin="normal"
+//         />
+//         <TextField
+//           id="outlined-required"
+//           label="How much you want to get paid per ticket?"
+//           defaultValue="..."
+//           helperText="Enter your price"
+//           variant="outlined"
+//           className={classes.textField}
+//           margin="normal"
+//         />
+//       </div>
+//       </form>
+//     </div>
+//   );
+// }
 
 
 // import React, { Component } from 'react'
