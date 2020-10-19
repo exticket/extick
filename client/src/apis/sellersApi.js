@@ -10,3 +10,8 @@ export const getAllSellers = async () => {
     return res.data.data;
 }
 
+export const createSeller = async (seller) => {
+    const res = await api.post('/', seller);
+    return res.data.id;
+}
+
