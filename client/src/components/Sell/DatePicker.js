@@ -13,13 +13,12 @@ function Date() {
                 selected={selectedDate}
                 onChange={data => setSelectedDate(data)}
                 dateFormat='dd/mm/yyyy'
-                // filterDate={data => data.getDay() != 6}
+                filterDate={data => data.getDay() != 6}
                 isClearable
                 showYearDropdown
                 scrollableMonthYearDropdown
             />
         </div>
-
     )
 }
 export default Date;
