@@ -25,7 +25,7 @@ function App() {
                         <Route path="/sellers/mytickets" exact component={WithLoginRequired(SellerMyTickets)} />
                         <Route path="/sellers/publish-ticket" exact component={WithLoginRequired(PublishTicket)} />
                         <Route path="/ticket/management/:id" exact component={TicketManagement} />
-                        <Route path="/sellers/SellTickets" exact component={WithLoginRequired(SellTickets)} />
+                        <Route path="/sellers/SellTickets" exact component={(SellTickets)} />
                         <Route path="/eventProfile" exact component={EventProfile} />
                         <Route component={NotFound} />
                     </Switch>
