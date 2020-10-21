@@ -1,7 +1,7 @@
 .pageContainer {
     display: flex;
     flex-direction: column;
-    padding: 0 1rem;
+   
 }
 
 .innerContainer {
@@ -27,6 +27,7 @@ font-weight: 900;
 font-size: 24px;
 line-height: 28px;
 margin: 0;
+margin-top: 34px;
 }
 
 .infoContainer {
@@ -94,4 +95,14 @@ line-height: 18px;
 
 .imgRightBottomSection {
     width: 50px;
+}
+.eventImgProfile {
+    position: relative;
+    text-align: center;
+    height: 364px;
+    background-color: rgb(243, 243, 243);
+  
+}
+.pagePadding{
+    padding: 0 1rem;
 }

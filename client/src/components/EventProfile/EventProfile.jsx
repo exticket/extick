@@ -3,6 +3,10 @@ import { useHistory } from 'react-router-dom';
 import './eventProfile.css';
 import Moment from 'react-moment';
 import moment from 'moment';
+import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
+import CalendarTodayOutlinedIcon from '@material-ui/icons/CalendarTodayOutlined';
+import WatchOutlinedIcon from '@material-ui/icons/WatchOutlined';
+import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 
 export default function EventProfile() {
 
@@ -54,11 +58,11 @@ export default function EventProfile() {
     console.log(props);
     return (
         <div className="pageContainer">
-            <div className="eventImgContainer">
+            <div className="eventImgProfile">
                 <img className="eventImg" src={props.eventInfo.imgUrl} alt="event" />
             </div>
-
-            <div className="innerContainer">
+            <div className="pagePadding">
+                 <div className="innerContainer">
 
                 <div className="nameContainer">
                     <p className="eventName">{props.eventInfo.ticket_title}</p>
@@ -67,13 +71,14 @@ export default function EventProfile() {
                 <div className="infoContainer">
                     <div className="infoContainerLeft">
 
-                        <p className="location">{props.eventInfo.location}</p>
+                        <p className="location">
+                            <RoomOutlinedIcon/>{props.eventInfo.location}</p>
 
                         <span className="ticket_dates">
-                        <Moment date={props.eventInfo.ticket_dates} format="dddd, DD MMMM YYYY" /> </span>
+                       <CalendarTodayOutlinedIcon/> <Moment date={props.eventInfo.ticket_dates} format="dddd, DD MMMM YYYY" /> </span>
                             |
                             <span className="hour">
-                            <Moment date= {props.eventInfo.ticket_dates} format = "HH:mm"/> </span>
+                             <WatchOutlinedIcon/><Moment date= {props.eventInfo.ticket_dates} format = "HH:mm"/> </span>
 
 
                     </div>
@@ -86,11 +91,11 @@ export default function EventProfile() {
                 </div>
             </div>
 
-            <div className="daysLeftSection">
-                <p className="daysLeftText"> <Moment fromNow>{props.eventInfo.ticket_dates}</Moment> </p>
-            </div>
+                <div className="daysLeftSection">
+                    <p className="daysLeftText"> <Moment fromNow>{props.eventInfo.ticket_dates}</Moment> </p>
+                </div>
 
-            <div className="bottomContainer">
+                <div className="bottomContainer">
                 <div className="leftBottomContainer">
 
                     <p className="category">Category: <b>Sport</b></p>
@@ -103,13 +108,15 @@ export default function EventProfile() {
                 </div>
 
                 <div className="rightBottomContainer">
-                    <img className="imgRightBottomSection" src="" alt=""/>
+                    < AccountCircleOutlinedIcon/> 
                     <p className="name">{props.eventInfo.seller.first_name + " " + props.eventInfo.seller.last_name}</p>
                     <p className="phone">054-5294847</p>
                     <div className="sendEmail">Send an email to the seller</div>
                 </div>
 
             </div>
+            </div>
         </div>
+
     )
 }
