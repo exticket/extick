@@ -1,0 +1,97 @@
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+}
+
+.innerContainer {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+}
+
+.infoContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+/* --------------- */
+.eventName {
+    font-family: Roboto;
+font-style: normal;
+font-weight: 900;
+font-size: 24px;
+line-height: 28px;
+margin: 0;
+}
+
+.infoContainer {
+    font-family: SF Pro Text;
+font-style: normal;
+font-weight: 300;
+font-size: 20px;
+line-height: 18px;
+}
+
+.infoContainerLeft {
+    display: flex;
+    justify-content: space-between;
+    flex: 0.6;
+    align-items: center;
+}
+
+.infoContainerRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 0.2;
+}
+
+.daysLeftText {
+    text-align: left;
+    padding: 5px;
+    background: #151522;
+    display: inline-block;
+    color: white;
+    margin: 0;
+}
+
+.price {
+    margin-bottom: 5px;
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.perTicket {
+    margin-top: 0;
+    font-weight: 300;
+}
+
+
+.bottomContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border: 1px solid #C3BDBD;
+    border-radius: 1rem;
+}
+
+.leftBottomContainer {
+    flex: 0.6;
+    font-weight: 300;
+}
+
+.rightBottomContainer {
+    flex: 0.3;
+    text-align: center;
+}
+
+.imgRightBottomSection {
+    width: 50px;
+}
