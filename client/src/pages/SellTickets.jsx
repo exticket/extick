@@ -35,6 +35,17 @@
 //   },
 // }));
 
+//   },
+//   textField: {
+//     marginLeft: theme.spacing(1),
+//     marginRight: theme.spacing(1),
+//     width: '25ch',
+//   },
+// }));
+
+
+// export default function LayoutTextFields() {
+//   const classes = useStyles();
 
 
 // export default function LayoutTextFields() {
@@ -379,6 +390,7 @@ import TextField from '@material-ui/core/TextField';
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import DatePicker from '../components/Sell/DatePicker';
+import Dropdown from '../components/Sell/Category';
 import Button from '@material-ui/core/Button';
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { allCatgories } from '../apis/catgory';
@@ -404,6 +416,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 // const useStyles = makeStyles((theme) => ({
 //   root: {
 //     '& .MuiTextField-root': {
@@ -423,7 +436,7 @@ export default function LayoutTextFields() {
                     <h1>Sell Tickets</h1>
 
                     <Autocomplete
-                        options={allCatgories}
+                        options={ Dropdown}
                         getOptionLabel={(option) => option.name}
                         // onChange={(event, dropdownOption) => onChangeHandler(event, dropdownOption)}
                         renderInput={(params) => {
@@ -437,6 +450,11 @@ export default function LayoutTextFields() {
                     />
                 
                     <DatePicker />
+                    <Dropdown/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
 
                     <TextField
                         id="outlined-margin-event name"label="Event name"
