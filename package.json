@@ -26,12 +26,7 @@
     "morgan": "~1.9.1",
     "multiselect-react-dropdown": "^1.5.7",
     "nodemon": "^2.0.4",
-<<<<<<< HEAD
     "react-moment": "^1.0.0"
-=======
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0"
->>>>>>> aeb561f4789e6b8bb7d430825f9cdff7d70349ab
   },
   "devDependencies": {
     "eslint": "^6.6.0",
