@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 // // import React, { Component } from 'react'
 // // import Date from '../components/Sell/DatePicker';
 // // // function SellTickets() {
@@ -15,7 +13,6 @@
 // // // export default SellTickets;
 
 
->>>>>>> aeb561f4789e6b8bb7d430825f9cdff7d70349ab
 // import React from 'react';
 // import TextField from '@material-ui/core/TextField';
 // import { makeStyles } from '@material-ui/core/styles';
@@ -29,17 +26,6 @@
 //     display: 'flex',
 //     flexWrap: 'wrap',
 //     margin: theme.spacing(1),
-<<<<<<< HEAD
-
-//   },
-//   textField: {
-//     marginLeft: theme.spacing(1),
-//     marginRight: theme.spacing(1),
-//     width: '25ch',
-//   },
-// }));
-=======
->>>>>>> aeb561f4789e6b8bb7d430825f9cdff7d70349ab
 
 //   },
 //   textField: {
@@ -49,17 +35,22 @@
 //   },
 // }));
 
+//   },
+//   textField: {
+//     marginLeft: theme.spacing(1),
+//     marginRight: theme.spacing(1),
+//     width: '25ch',
+//   },
+// }));
 
-<<<<<<< HEAD
+
 // export default function LayoutTextFields() {
 //   const classes = useStyles();
 
-=======
 
 // export default function LayoutTextFields() {
 //   const classes = useStyles();
 
->>>>>>> aeb561f4789e6b8bb7d430825f9cdff7d70349ab
 //   return (
 //     <div className={classes.root}>
 //       <form action="">
@@ -399,6 +390,7 @@ import TextField from '@material-ui/core/TextField';
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import DatePicker from '../components/Sell/DatePicker';
+import Dropdown from '../components/Sell/Category';
 import Button from '@material-ui/core/Button';
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { allCatgories } from '../apis/catgory';
@@ -424,6 +416,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 // const useStyles = makeStyles((theme) => ({
 //   root: {
 //     '& .MuiTextField-root': {
@@ -443,7 +436,7 @@ export default function LayoutTextFields() {
                     <h1>Sell Tickets</h1>
 
                     <Autocomplete
-                        options={allCatgories}
+                        options={ Dropdown}
                         getOptionLabel={(option) => option.name}
                         // onChange={(event, dropdownOption) => onChangeHandler(event, dropdownOption)}
                         renderInput={(params) => {
@@ -457,6 +450,11 @@ export default function LayoutTextFields() {
                     />
                 
                     <DatePicker />
+                    <Dropdown/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
 
                     <TextField
                         id="outlined-margin-event name"label="Event name"

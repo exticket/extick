@@ -37,6 +37,7 @@ function Homepage() {
         <Banner />
         <Menu items={categories} ulClass="category-menu" liClass="category-item" liClassClicked="category-item-clicked" onItemClicked={updateCategoryId} />
         <TicketsContainer tickets={tickets} categoryId={categoryId} />
+        
     </div>
 }
 
