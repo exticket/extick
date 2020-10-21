@@ -1,47 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import EventProfile from './components/EventProfile/EventProfile';
-import { Homepage, LoginPage, PublishTicket, SellerMyTickets, TicketManagement, SignupPage, SellTickets, TicketDetails } from './pages';
+import { Homepage, LoginPage, PublishTicket, SellerMyTickets, TicketManagement, SignupPage, SellTickets, LoginSignupPage } from './pages';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import NotFound from './pages/NotFound';
-import SellerContext from './SellerContext';
-import { getAllSellers } from './apis/sellersApi';
+import { SellerContext, useSellerSingleton } from './SellerContext';
+import { WithLoginRequired } from './components/WithLoginRequired';
 
 function App() {
-    const [seller, setSeller] = useState(null);
-
-    function LogOut() {
-        setSeller(null);
-    }
-
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const allSellers = await getAllSellers();
-                const secondUser = allSellers[1];
-                setSeller(secondUser);
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchData();
-    }, []);
+    const sellerApi = useSellerSingleton();
 
     return <>
-        <SellerContext.Provider value={{ seller: seller, logOut: LogOut }}>
+        <SellerContext.Provider value={sellerApi}>
             <Router>
                 <Header />
                 <main>
                     <Switch>
                         <Route path="/" exact component={Homepage} />
                         <Route path="/sellers/login" exact component={LoginPage} />
+                        <Route path="/sellers/selltickets/login" exact component={LoginSignupPage} />
                         <Route path="/sellers/signup" exact component={SignupPage} />
-                        <Route path="/sellers/mytickets" exact component={SellerMyTickets} />
-                        <Route path="/sellers/publish-ticket" exact component={PublishTicket} />
-                        <Route path="/sellers/ticket/management" exact component={TicketManagement} />
-                        <Route path="/sellers/SellTickets" exact component={SellTickets} />
+                        <Route path="/sellers/mytickets" exact component={WithLoginRequired(SellerMyTickets)} />
+                        <Route path="/sellers/publish-ticket" exact component={WithLoginRequired(PublishTicket)} />
+                        <Route path="/ticket/management/:id" exact component={TicketManagement} />
+                        <Route path="/sellers/SellTickets" exact component={(SellTickets)} />
                         <Route path="/eventProfile" exact component={EventProfile} />
                         <Route component={NotFound} />
                     </Switch>

@@ -1,0 +1,36 @@
+.formContainer form {
+    width: 325px;
+}
+
+.formContainer h1 {
+    font-weight: 500;
+    margin-bottom: 30px;
+    margin-left: 550px;
+
+}
+
+.formContainer button[type="submit"] {
+    font-weight: bold;
+    background-color: #49EEDC;
+    padding: 10px 0;
+}
+
+.formContainer button[type="submit"]:disabled {
+    cursor: not-allowed ;
+    pointer-events: auto ;
+}
+
+.formContainer button[type="submit"]:hover {
+    background-color:rebeccapurple !important;
+}
+
+.formContainer form>* {
+    width: 100%;
+    min-height: 10px;
+    margin-bottom: 10px !important;
+    margin-left: 450px;
+}
+
+.success div fieldset{
+    border: 2px solid lightgreen !important;
+}

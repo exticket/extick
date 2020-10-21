@@ -11,15 +11,14 @@ function Date() {
             <h3>Select Date</h3>
             <DatePicker
                 selected={selectedDate}
-                onChange={data => setSelectedDate(data)}
-                dateFormat='dd/mm/yyyy'
-                // filterDate={data => data.getDay() != 6}
+                onChange={date => setSelectedDate(date)}
+                dateFormat='dd/MM/yyyy'
+                // filterDate={date => date.getDay() === 6 && date.getDay() === 3}
                 isClearable
                 showYearDropdown
                 scrollableMonthYearDropdown
             />
         </div>
-
     )
 }
 export default Date;

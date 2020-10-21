@@ -1,0 +1,17 @@
+.iconsContainer {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    top: -20px;
+    right: 10px;
+}
+
+.iconsContainer svg{
+    color: grey; 
+    margin: 2px;
+}
+
+.iconsContainer svg:hover{
+    font-size: xx-large;
+}
+
