@@ -24,7 +24,7 @@ export default function EventProfile() {
             row: "50",
             seats: "25",
             seller_Id: "5f7489e50e2f6f143047702d",
-            ticket_dates: "2020-10-21T20:00:00.000Z",
+            ticket_dates: "2021-10-21T20:00:00.000Z",
             ticket_title: "chris brown show",
             updatedAt: "2020-09-21T18:13:05.737Z",
             __v: 0,
@@ -40,6 +40,7 @@ export default function EventProfile() {
                 tel: "0545286410",
                 password: "$2b$10$wX7nJV37rTSaXW4QnpuoB./JEIDg24/ZGhHR4rSJ6KVSaPkaIglbO",
                 __v: 0
+
 
 
 
@@ -86,7 +87,7 @@ export default function EventProfile() {
             </div>
 
             <div className="daysLeftSection">
-                <p className="daysLeftText">In 3 Days</p>
+                <p className="daysLeftText"> <Moment fromNow>{props.eventInfo.ticket_dates}</Moment> </p>
             </div>
 
             <div className="bottomContainer">
