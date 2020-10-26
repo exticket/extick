@@ -14,9 +14,9 @@ const ticketSchema = new mongoose.Schema(
 
         row: { type: String, required: false },
 
-        seller_Id: { type: String, required: true },
+        seller_Id: { type: mongoose.Schema.Types.ObjectId, ref: 'Seller', required: true },
 
-        category_Id: { type: String, required: true },
+        category_Id: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
     },
     { timestamps: true }
 );
