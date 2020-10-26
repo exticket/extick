@@ -16,7 +16,7 @@ export default function ModifyTicketIcons({ ticketId, onTicketDeleted }) {
     }
     
     return (
-            <div id="TicketIconsContainer" className={styles.iconsContainer}>
+            <div className={styles.iconsContainer}>
                 <DeleteOutlineIcon onClick={(e) => { e.stopPropagation(); setOpenDialog(true) }} titleAccess="Delete" />
                 <Link to={`/ticket/management/${ticketId}`} onClick={(e) => e.stopPropagation()}><EditIcon titleAccess="Edit" /></Link>
                 <DeleteDialog deleteHandler={deleteHandler} open={openDialog} setOpen={setOpenDialog}/>

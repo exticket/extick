@@ -9,6 +9,7 @@
 
 .card-content {
     padding: 0 10px;
+    position: relative;
 }
 .card:hover {
     background-color: rgb(245, 245, 245);
