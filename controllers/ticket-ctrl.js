@@ -36,8 +36,8 @@ const createTicket = (req, res) => {
 const getTickets = (req, res) => {
     Ticket.find()
         .then(tickets => {
-                return res.status(200).json({ success:true,data:tickets, message: 'Could not get tickets!'});
-               
+            return res.status(200).json({ success: true, data: tickets, message: 'Could not get tickets!' });
+
 
         })
         .catch(error => {
@@ -85,25 +85,30 @@ const updateTicket = (req, res) => {
         })
 }
 
-const deleteTicket = (req,res)=>{
-    Ticket.findOneAndDelete({ _id:req.params.id}).then(ticket =>{
-        if(!ticket){
-        return res.status(400).json({success:false,error:'Ticket not found'})}
-        return res.status(200).json({success:true,data:ticket})  
-    }).catch(err=>console.log(err))
+const deleteTicket = (req, res) => {
+    Ticket.findOneAndDelete({ _id: req.params.id }).then(ticket => {
+        if (!ticket) {
+            return res.status(400).json({ success: false, error: 'Ticket not found' })
+        }
+        return res.status(200).json({ success: true, data: ticket })
+    }).catch(err => console.log(err))
 }
 
 const getTicketbyid = (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
         return res.status(400).json({ success: false, message: 'Id not valid' })
     }
-    Ticket.findOne({ _id: req.params.id }).then(ticket => {
-        if (!ticket) {
-            return res.status(404).json({ success: false, message: 'ticket not found' })
-        }
+    Ticket.findOne({ _id: req.params.id })
+        .populate('seller_Id', '-password')
+        .populate('category_Id')
+        .exec()
+        .then(ticket => {
+            if (!ticket) {
+                return res.status(404).json({ success: false, message: 'ticket not found' })
+            }
 
-        return res.status(200).json({ success: true, data: ticket })
-    }).catch(err => res.status(400).json({ success: false, message: 'ticket request', error: err.message }))
+            return res.status(200).json({ success: true, data: ticket })
+        }).catch(err => res.status(400).json({ success: false, message: 'ticket request', error: err.message }))
 }
 module.exports = { getTickets, createTicket, updateTicket, deleteTicket, getTicketbyid }
 
