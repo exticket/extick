@@ -23,7 +23,7 @@ export default function DeleteDialog({ deleteHandler, open, setOpen }) {
                 <DialogTitle id="alert-dialog-title">{"Are you sure you want to delete this?"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        This item will be removed permanently from your account.
+                        This will be removed permanently.
           </DialogContentText>
                 </DialogContent>
                 <DialogActions>
