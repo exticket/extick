@@ -7,7 +7,7 @@ var cors = require('cors');
 const db = require('./db/index');
 const passport = require('passport');
 const localStrategy = require('passport-local');
-db.on('error',console.error.bind(console,'mongo connection error'));
+db.on('error', console.error.bind(console, 'mongo connection error'));
 const bcrypt = require('bcrypt');
 
 var usersRouter = require('./routes/users');
@@ -17,43 +17,36 @@ var ticketsRouter = require('./routes/ticket-router');
 var authenticationRouter = require('./routes/authentication-router');
 const SellerModel = require('./models/seller-model');
 
-
-
-
 var app = express();
 passport.use(new localStrategy.Strategy(
   {
     usernameField: "email",
     password: "password"
   },
-  function(email, password, done) {
+  function (email, password, done) {
     SellerModel.findOne({ email }, function (err, seller) {
-      if (err) { return  done(err) };
+      if (err) { return done(err) };
       if (!seller) return done(null, false, { message: 'Wrong Email' });
       bcrypt.compare(password, seller.password, (err, result) => {
         if (result === true) {
-            return done(null, seller);
-          } else {
-            return done(null, false, { message: 'Wrong Password' });            //  return res.status(200).json({success:false,message:'incorrect password'}); 
-          }
-        }); 
-       });
+          return done(null, seller);
+        } else {
+          return done(null, false, { message: 'Wrong Password' });            //  return res.status(200).json({success:false,message:'incorrect password'}); 
+        }
+      });
+    });
   }
 ));
 
-passport.serializeUser(function(seller, done) {
-  done(null, seller.id); 
+passport.serializeUser(function (seller, done) {
+  done(null, seller.id);
 });
 
-passport.deserializeUser(function(id, done) {
-  SellerModel.findById(id, function(err, user) {
-      done(err, user);
+passport.deserializeUser(function (id, done) {
+  SellerModel.findById(id, function (err, user) {
+    done(err, user);
   });
 });
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(cors());
@@ -66,13 +59,13 @@ app.use(passport.session());
 
 app.use((req, res, next) => {
   if (process.env.NODE_ENV === 'production') {
-      if (req.headers['x-forwarded-proto'] !== 'https')
-          // the statement for performing our redirection
-          return res.redirect('https://' + req.headers.host + req.url);
-      else
-          return next();
-  } else
+    if (req.headers['x-forwarded-proto'] !== 'https')
+      // the statement for performing our redirection
+      return res.redirect('https://' + req.headers.host + req.url);
+    else
       return next();
+  } else
+    return next();
 });
 
 app.use(cookieParser());
@@ -83,8 +76,8 @@ app.use(express.static(path.resolve(__dirname, 'client/build')));
 
 
 
-app.use('/users', usersRouter); 
-app.use('/category', categoriesRouter);  
+app.use('/users', usersRouter);
+app.use('/category', categoriesRouter);
 app.use('/seller', sellersRouter);
 app.use('/ticket', ticketsRouter);
 app.use('/authentication', authenticationRouter);
@@ -97,19 +90,22 @@ app.get('/*', (req, res) => {
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({
+    message: err.message,
+    error: err
+  });
 });
 
 module.exports = app;

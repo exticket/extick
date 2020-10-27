@@ -9,6 +9,7 @@ export const getAllTickets = async () => {
     const res = await api.get('/');
     return res.data.data;
 }
+
 export const createTickets = async () => {
     const res = await api.POST('/');
     return res.data.data;
@@ -17,4 +18,9 @@ export const createTickets = async () => {
 export const deleteTicket = async (id) => {
     const res = await api.delete('/' + id);
     return res.data;
+}
+
+export const getTicketById = async (id) => {
+    const res = await api.get(`/${id}`);
+    return res.data.data;
 }

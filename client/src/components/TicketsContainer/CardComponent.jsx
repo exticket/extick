@@ -1,6 +1,6 @@
 import React from 'react';
 import './CardComponent.css';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import ModifyTicketIcons from '../ModifyTicketIcons';
 import IsNotValidDate from '../Home/ValidDate';
 
@@ -20,15 +20,14 @@ export default function CardComponent({ eventInfo, onTicketDeleted }) {
     }
     
     return (
-
-        <div title="Click For Details" className="card ticket" onClick={() => onCardClick(eventInfo)}>
-            <div className="eventImgContainer">
-                <img className="eventImg" src={eventInfo.imgUrl} alt="event" />
-                <div className="card-header">
-                    <div className="circle-icon"></div>
-                    <span className="eventName">{eventInfo.ticket_title}</span>
+        <Link className="card-link" to={`/eventProfile/${eventInfo._id}`}>
+            <div title="Click For Details" className="card ticket">
+                <div className="eventImgContainer">
+                    <img className="eventImg" src={eventInfo.imgUrl} alt="event" />
+                    <div className="card-header">
+                        <span className="eventName">{eventInfo.ticket_title}</span>
+                    </div>
                 </div>
-            </div>
 
             <div className="card-content">
                 <p className="date">{date } </p>
@@ -39,7 +38,7 @@ export default function CardComponent({ eventInfo, onTicketDeleted }) {
                 <p className="price">{eventInfo.price} ₪</p>
                 {history.location.pathname === '/sellers/mytickets' && <ModifyTicketIcons ticketId={eventInfo._id} onTicketDeleted={onTicketDeleted} />}
             </div>
-        </div>
+        </Link>
     )
 }
 

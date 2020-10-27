@@ -15,3 +15,7 @@ export const createSeller = async (seller) => {
     return res.data.id;
 }
 
+export const updateSeller = async (seller) => {
+    const res = await api.put(`/${seller._id}`, seller);
+    return res.data;
+}

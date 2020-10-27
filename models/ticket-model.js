@@ -6,6 +6,8 @@ const ticketSchema = new mongoose.Schema(
 
         description: { type: String, required: true },
 
+        location: { type: String, required: true },
+
         ticket_dates: { type: Date, required: true },
 
         price: { type: Number, required: true },
@@ -14,9 +16,9 @@ const ticketSchema = new mongoose.Schema(
 
         row: { type: String, required: false },
 
-        seller_Id: { type: String, required: true },
+        seller_Id: { type: mongoose.Schema.Types.ObjectId, ref: 'Seller', required: true },
 
-        category_Id: { type: String, required: true },
+        category_Id: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true },
     },
     { timestamps: true }
 );
