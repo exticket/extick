@@ -12,10 +12,9 @@ export default function CardComponent({ eventInfo, onTicketDeleted }) {
     const time = dateObject.toLocaleTimeString();
 
 
-    const onCardClick = (eventInfo) => {
-        console.log(eventInfo);
+    const onCardClick = () => {
         history.push({
-            pathname: '/eventProfile',
+            pathname: `/eventProfile/${eventInfo._id}`,
             props: { eventInfo }
         });
     }
@@ -26,7 +25,7 @@ export default function CardComponent({ eventInfo, onTicketDeleted }) {
     // }
     return (
 
-        <div title="Click For Details" className="card ticket" onClick={() => onCardClick(eventInfo)}>
+        <div title="Click For Details" className="card ticket" onClick={() => onCardClick()}>
             <div className="eventImgContainer">
                 <img className="eventImg" src={eventInfo.imgUrl} alt="event" />
                 <div className="card-header">
