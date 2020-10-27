@@ -2,7 +2,7 @@ import TextField from '@material-ui/core/TextField';
 import React, { useState, useContext, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import api from '../apis/ticketsApi';
+import {createTickets} from '../apis/ticketsApi';
 import { useHistory } from 'react-router-dom'
 import css from '../pages/try.module.css'
 import SellerContext, { useSeller } from '../SellerContext'
@@ -11,6 +11,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { getAllCategories } from '../apis/categoriesApi'
+
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -40,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
-
 }));
 
 export default function SellTickets() {
@@ -69,14 +69,12 @@ export default function SellTickets() {
     const { ticket_title, description, location, seller_Id, ticket_dates, category_Id,
         price } = ticket;
     const onInputChange = e => {
-    const x = e.target.name;
-    const y = e.target.value;
         setTicket({ ...ticket, [e.target.name]: e.target.value });
     };
 
     const onSubmit = async e => {
         e.preventDefault();
-        await api.createTickets(ticket);
+        await createTickets(ticket);
         history.push("/sellers/mytickets");
     };
 
@@ -93,12 +91,13 @@ export default function SellTickets() {
     }, []);
 
     return (
-        <form className="f" onSubmit={e => onSubmit(e)}>
+        <form className="tickets-container" onSubmit={e => onSubmit(e)}>
             <div className={css.for}>
                 <div>
                     <h1>Sell Tickets</h1>
                 </div>
-                <div>
+                
+                    <div>
                     <TextField
                         name="ticket_title"
                         value={ticket_title}
@@ -107,12 +106,11 @@ export default function SellTickets() {
                         defaultValue="" className={classes.textField} margin="normal" variant="outlined"
                     />
                 </div>
-                <div>
+                    <div>
                     <DateAndTime name="ticket_dates" value={ticket_dates}
                         onInputChange={onInputChange} ></DateAndTime>
                 </div>
                 <div>
-
                     <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel htmlFor="outlined-age-native-simple">Category</InputLabel>
                         <Select
@@ -140,7 +138,10 @@ export default function SellTickets() {
                             shrink: true,
                         }}
                         variant="outlined" style={{ /*margin:8,*/ width: '400px' }}
-                    /></div>
+                    />
+                    </div>
+
+
                 <div>
                     <TextField
                         name="location"
@@ -167,6 +168,370 @@ export default function SellTickets() {
         </form >
     );
 }
+
+
+// import React from 'react';
+// import TextField from '@material-ui/core/TextField';
+// import { makeStyles } from '@material-ui/core/styles';
+// import Date from '../components/Sell/DatePicker';
+// import Dropdown from '../components/Sell/Category';
+
+
+// const useStyles = makeStyles((theme) => ({
+//   continer: {
+
+//     display: 'flex',
+//     flexWrap: 'wrap',
+//     margin: theme.spacing(1),
+
+//   },
+//   textField: {
+//     marginLeft: theme.spacing(1),
+//     marginRight: theme.spacing(1),
+//     width: '25ch',
+//   },
+// }));
+
+
+
+// export default function LayoutTextFields() {
+//   const classes = useStyles();
+
+//   return (
+//     <div className={classes.root}>
+//       <form action="">
+//       <div>
+//       <h1>Sell Tickets</h1>
+
+//         <TextField          
+//           label="Catgoery"
+//           id="outlined-required"
+//           defaultValue={<Date/>}
+//           className={classes.textField}
+//           margin="normal"
+//           variant="outlined"
+//           Dropdown
+//         />
+//         <Dropdown/>
+//         <Date/>
+
+//          <TextField
+//           id="outlined-margin-event name"
+//           label="Event name"
+//           defaultValue=""
+//           className={classes.textField}
+//           margin="normal"
+//           variant="outlined"
+//         />
+//         <TextField
+//           id="outlined-full-width"
+//           label="Descripton(optional)"
+//           style={{ margin: 8 }}
+//           placeholder="..."
+//           helperText="describe the event!"
+//           fullWidth
+//           margin="normal"
+//           InputLabelProps={{
+//             shrink: true,
+//           }}
+//           variant="outlined"
+//           // style={{ /margin:8,/ width: '400px'}}
+
+//         />
+//          <TextField
+//           id="outlined-required"
+//           label="Location"
+//           defaultValue="..."
+//           variant="outlined"
+//           className={classes.textField}
+//           margin="normal"
+//         />
+//         <TextField
+//           id="outlined-required"
+//           label="Select Date"
+//           defaultValue="..."
+//           variant="outlined"
+//           className={classes.textField}
+//           margin="normal"
+//         />
+//         <TextField
+//           id="outlined-required"
+//           label="How much you want to get paid per ticket?"
+//           defaultValue="..."
+//           helperText="Enter your price"
+//           variant="outlined"
+//           className={classes.textField}
+//           margin="normal"
+//         />
+//       </div>
+//       </form>
+//     </div>
+//   );
+// }
+
+
+// import React, { Component } from 'react'
+// import Date from '../components/Sell/DatePicker';
+// import Event from '../components/Sell/EventName';
+// import TimePicker from '../components/Sell/TimePicker';
+
+// function SellTickets() {
+//     return (
+//         <div>
+//             <h1>Sell Tickets</h1>
+//             <Event/>
+// import React, { Component } from 'react'
+// import Date from '../components/Sell/DatePicker';
+// import React, { Component } from 'react';
+// // import styles from './SellTicketTryout';
+// import styles from './try.module.css';
+// import TextField from '@material-ui/core/TextField';
+// import Button from '@material-ui/core/Button';
+// import { camelCaseToSentence } from '../utils';
+// import Autocomplete from "@material-ui/lab/Autocomplete";
+// import { createTickets } from '../apis/ticketsApi';
+// import { allCatgories } from '../apis/catgory';
+// import date from '../components/Sell/DatePicker';
+// import DatePicker from 'react-datepicker';
+// import Timepicker from '../components/Sell/TimePicker';
+
+// class SellTickets extends Component {
+//     constructor() {
+//       super();
+//       this.state = {
+//         category_Id: '',
+//         location: '',
+//         eventName: '',
+//         time: '',
+//         ticket_dates: '',
+//         price: '',
+//         seats:'',
+//         row:"",
+//         seller_Id:"",
+//         description:"",
+//       };
+//       this.dismissError = this.dismissError.bind(this);
+//     }
+
+//     dismissError() {
+//       this.setState({ error: '' });
+//     }
+
+//     render() {
+//         return (
+//         <div className="SellTicket">
+
+//          <form> 
+//              <h1>Sell Ticket Page</h1>
+
+//             <label for="chooseCategory">Category:</label>
+//             <input placeholder="choose category"  type="text"/>
+
+//             <label for="location">Location:</label>
+//             <input placeholder="location" type="text"/>
+
+//             <label for="eventName">Event Name:</label>
+//             <input placeholder="eventName" data-test="eventName" type="text"/> 
+
+//             <label for="appt">Select a time:</label>
+//             <input type="time" id="appt" />
+//               <button  type="submit">Done</button>
+
+
+//             <Date/>
+
+//             <label for="price">Enter the price:</label>
+//             <input placeholder="price" type="text" /> 
+
+//             <label for="seats">Enter the seat:</label>
+//             <input placeholder="seats" type="text" />
+
+//             <label for="row">Enter the row of seat:</label>
+//             <input placeholder="row" type="text"/>
+
+//             <label for="seller_Id">Seller Id:</label>
+//             <input placeholder="seller_Id" type="text"/>//from dataBase
+
+//             <label for="description">description:</label>
+//             <textarea name="comment" >Enter text here...</textarea>    
+
+//             <button  type="submit">Done</button>
+//             {
+//               this.state.error &&
+//               <h3 data-test="error" onClick={this.dismissError}>
+//                 <button onClick={this.dismissError}>✖</button>
+//                 {this.state.error}
+//               </h3>
+//             }
+//           </form>
+//         </div>
+
+//     )
+// }
+// export default SellTickets;
+// class SellTickets extends Component {
+//     constructor() {
+//       super();
+//       this.state = {
+//         category_Id: '',
+//         location: '',
+//         eventName: '',
+//         time: '',
+//         ticket_dates: '',
+//         price: '',
+//         seats:'',
+//         row:"",
+//         seller_Id:"",
+//         description:"",
+//       };
+//       this.dismissError = this.dismissError.bind(this);
+//     }
+
+//     dismissError() {
+//       this.setState({ error: '' });
+//     }
+
+//     render() {
+//         return (
+//         <div className="SellTicket">
+//          {/* <form onSubmit={this.handleSubmit}> */}
+//          <form>
+//              <h1>Sell Ticket Page</h1>
+
+//             <label for="chooseCategory">Category:</label>
+//             <input placeholder="choose category"  type="text"/>
+
+//             <label for="location">Location:</label>
+//             <input placeholder="location" type="text"/>
+
+//             <label for="eventName">Event Name:</label>
+//             <input placeholder="eventName" data-test="eventName" type="text"/> 
+
+//             <label for="appt">Select a time:</label>
+//             <input type="time" id="appt" />
+//               <button  type="submit">Done</button>
+
+//             <Date/>
+
+//             <label for="price">Enter the price:</label>
+//             <input placeholder="price" type="text" /> 
+
+//             <label for="seats">Enter the seat:</label>
+//             <input placeholder="seats" type="text" />
+
+//             <label for="row">Enter the row of seat:</label>
+//             <input placeholder="row" type="text"/>
+
+//             <label for="seller_Id">Seller Id:</label>
+//             <input placeholder="seller_Id" type="text"/>
+
+//             <label for="description">description:</label>
+//             <textarea name="comment" >Enter text here...</textarea>    
+
+//             <button  type="submit">Done</button>
+//             {
+//               this.state.error &&
+//               <h3 data-test="error" onClick={this.dismissError}>
+//                 <button onClick={this.dismissError}>✖</button>
+//                 {this.state.error}
+//               </h3>
+//             }
+//           </form>
+//         </div>
+//       );
+//     }
+//   }
+//   export default SellTickets;
+
+// import React, { Component } from 'react'
+// import Date from '../components/Sell/DatePicker';
+// // function SellTickets() {
+// //     return (
+// //         <div>
+// //             <h1>Sell Tickets</h1>
+// //             <Event/>
+// //             <Date/>
+// //             <TimePicker/>
+// //         </div>
+// //     )
+// // }
+// // export default SellTickets;
+
+// class SellTickets extends Component {
+//     constructor() {
+//       super();
+//       this.state = {
+//         category_Id: '',
+//         location: '',
+//         eventName: '',
+//         time: '',
+//         ticket_dates: '',
+//         price: '',
+//         seats:'',
+//         row:"",
+//         seller_Id:"",
+//         description:"",
+//       };
+//       this.dismissError = this.dismissError.bind(this);
+//     }
+
+//     dismissError() {
+//       this.setState({ error: '' });
+//     }
+
+//     render() {
+//         return (
+//         <div className="SellTicket">
+
+//          <form> 
+//              <h1>Sell Ticket Page</h1>
+
+//             <label for="chooseCategory">Category:</label>
+//             <input placeholder="choose category"  type="text"/>
+
+//             <label for="location">Location:</label>
+//             <input placeholder="location" type="text"/>
+
+//             <label for="eventName">Event Name:</label>
+//             <input placeholder="eventName" data-test="eventName" type="text"/> 
+
+//             <label for="appt">Select a time:</label>
+//             <input type="time" id="appt" />
+//               <button  type="submit">Done</button>
+
+//             <Date/>
+
+//             <label for="price">Enter the price:</label>
+//             <input placeholder="price" type="text" /> 
+
+//             <label for="seats">Enter the seat:</label>
+//             <input placeholder="seats" type="text" />
+
+//             <label for="row">Enter the row of seat:</label>
+//             <input placeholder="row" type="text"/>
+
+//             <label for="seller_Id">Seller Id:</label>
+//             <input placeholder="seller_Id" type="text"/>//from dataBase
+
+//             <label for="description">description:</label>
+//             <textarea name="comment" >Enter text here...</textarea>    
+
+//             <button  type="submit">Done</button>
+//             {
+//               this.state.error &&
+//               <h3 data-test="error" onClick={this.dismissError}>
+//                 <button onClick={this.dismissError}>✖</button>
+//                 {this.state.error}
+//               </h3>
+//             }
+//           </form>
+//         </div>
+
+//       );
+//     }
+//   }
+//   export default SellTickets;
+
 
 // }
 
