@@ -77,6 +77,11 @@ main {
   color: #FFFFFF;
 }
 
+.search-bar {
+  width: 100%;
+  text-align: center;
+}
+
 header {
   display: flex;
   background-color: #030303;
