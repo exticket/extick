@@ -19,3 +19,8 @@ export const updateSeller = async (seller) => {
     const res = await api.put(`/${seller._id}`, seller);
     return res.data;
 }
+
+export const deleteSeller = async (id) => {
+    const res = await api.delete('/' + id);
+    return res.data;
+}
