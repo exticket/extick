@@ -9,7 +9,7 @@ import { allCitiesInIsrael } from '../../apis/cities';
 import { createSeller, updateSeller } from '../../apis/sellersApi';
 import { useSeller } from '../../SellerContext';
 
-export default function SellerForm({ editMode, className }) {
+export default function SellerForm({ editMode, className, onUpdated }) {
     const { seller } = useSeller();
 
     const formDataInitial = {
@@ -146,6 +146,7 @@ export default function SellerForm({ editMode, className }) {
                     email: formData.email,
                     tel: formData.phoneNumber,
                 })
+                onUpdated();
             }
             else {
                 await createSeller({
