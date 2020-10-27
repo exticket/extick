@@ -48,7 +48,7 @@ export default function EventProfile({ match }) {
                         </div>
 
                         <div className="infoContainerRight">
-                            <p className="price">${ticket.price}</p>
+                            <p className="price">{ticket.price}₪</p>
                             <p className="perTicket">Per Ticket</p>
                         </div>
 
