@@ -1,6 +1,42 @@
-.formContainer form {
+/* .formContainer form {
     width: 325px;
 }
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .item {
+    flex: 0 32%;
+    height: 100px;
+    margin-bottom: 2%; /* (100-32*3)/2 */
+  /* } */
+
+/* .textField {
+    margin-left: 200px;
+    marginRight: theme.spacing(1),
+    width: 200,
+}, */
+
+/* .continer {
+    display: "inline",
+    flex-wrap: wrap,
+    margin: theme.spacing(1),
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+} */
+/* .TextField {
+    display: "inline",
+}
+.formControl {
+    margin: 10px,
+    min-width: 500px;
+}
+.selectEmpty {
+    margin-top: 30px;
+}
+
 
 .formContainer h1 {
     font-weight: 500;
@@ -33,4 +69,4 @@
 
 .success div fieldset{
     border: 2px solid lightgreen !important;
-}
+/* } */  

@@ -1,17 +1,18 @@
 .iconsContainer {
     display: flex;
     justify-content: flex-end;
-    position: relative;
-    top: -20px;
+    position: absolute;
     right: 10px;
+    bottom: 5px;
+    width: 60px;
+    height: 30px;
 }
 
-.iconsContainer svg{
-    color: grey; 
+.iconsContainer svg {
+    color: grey;
     margin: 2px;
 }
 
-.iconsContainer svg:hover{
+.iconsContainer svg:hover {
     font-size: xx-large;
 }
-

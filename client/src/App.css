@@ -150,6 +150,16 @@ footer {
   width: 160px;
 }
 
+.edit-account{
+  width: fit-content;
+  align-self: center;
+}
+
+.my-tickets-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .my-tickets-container h2 {
   font-family: Monaco;
   margin-left: 25%;
