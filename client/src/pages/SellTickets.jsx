@@ -117,6 +117,7 @@ export default function SellTickets() {
                             native
                             onChange={e => onInputChange(e)}
                             name="category_Id"
+
                         >
                             <option aria-label="None" value="" />
                             {categories.map((category) => {
@@ -140,8 +141,6 @@ export default function SellTickets() {
                         variant="outlined" style={{ /*margin:8,*/ width: '400px' }}
                     />
                     </div>
-
-
                 <div>
                     <TextField
                         name="location"

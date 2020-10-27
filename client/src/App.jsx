@@ -19,7 +19,7 @@ function App() {
                 <main>
                     <Switch>
                         <Route path="/" exact component={Homepage} />
-                        <Route path="/sellers/login" exact component={LoginPage} />
+                        <Route path="/sellers/login" exact component={LoginSignupPage} />
                         <Route path="/sellers/selltickets/login" exact component={LoginSignupPage} />
                         <Route path="/sellers/signup" exact component={SignupPage} />
                         <Route path="/sellers/mytickets" exact component={WithLoginRequired(SellerMyTickets)} />

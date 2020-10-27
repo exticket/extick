@@ -2,7 +2,7 @@ import TextField from '@material-ui/core/TextField';
 import React, { useState, useContext, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import {createTickets} from '../apis/ticketsApi';
+import {updateTicket} from '../apis/ticketsApi';
 import { useHistory } from 'react-router-dom'
 import css from '../pages/try.module.css'
 import SellerContext, { useSeller } from '../SellerContext'
@@ -77,7 +77,6 @@ export default function TicketManagement({match})  {
 
     useEffect(() => {
         getTicket();
-        fetchData();
     }, [match])
   
     useEffect(() => {
@@ -90,12 +89,12 @@ export default function TicketManagement({match})  {
         price } = ticket;
 
     const onInputChange = e => {
-        setTicket({ ...ticket, [e.target.name]: e.target.value });
+                setTicket({ ...ticket, [e.target.name]: e.target.value });
     };
-
     const onSubmit = async e => {
         e.preventDefault();
-        await createTickets(ticket);
+        let  x = ticket
+        await updateTicket(ticket,ticket._id);
         history.push("/sellers/mytickets");
     };
     function getDate(){
@@ -113,7 +112,7 @@ export default function TicketManagement({match})  {
         <form className="tickets-container" onSubmit={e => onSubmit(e)}>
             <div className={css.for}>
                 <div>
-                    <h1>Sell Tickets</h1>
+                    <h1>Edit Tickets</h1>
                 </div>
                 
                     <div>
@@ -130,7 +129,7 @@ export default function TicketManagement({match})  {
                         onInputChange={onInputChange} ></DateAndTime>
                 </div>
                 <div>
-                    <FormControl variant="outlined" className={classes.formControl}>
+                <FormControl variant="outlined" className={classes.formControl}>
                         <InputLabel htmlFor="outlined-age-native-simple">Category</InputLabel>
                         <Select
                             native
@@ -138,7 +137,7 @@ export default function TicketManagement({match})  {
                             name="category_Id"
                             value={category_Id}
                         >
-                           {/* {<option aria-label="None" value={category_Id}>{getCategory()}</option>} */}
+                            <option aria-label="None" value={category} >{category.name}</option>
                             {categories.map((category) => {
                                 return <option value={category._id}>
                                     {category.name}</option>
@@ -181,7 +180,7 @@ export default function TicketManagement({match})  {
                 </div>
                 <div>
                     <Button type='submit' variant="contained" color="secondary">
-                        Create
+                        Edit
                         </Button>
                 </div>
             </div>
