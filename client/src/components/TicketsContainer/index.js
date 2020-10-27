@@ -20,7 +20,7 @@ export default function TicketsContainer({ tickets, categoryId, onTicketDeleted 
     return (
         <div className="tickets-container">
             {pathname === '/sellers/mytickets' && <Link to="/sellers/selltickets"><AddCardComponent /></Link>}
-            { currentTickets.length === 0 ? <OutOfStock /> : currentTickets.map((ticket) => <CardComponent key={ticket._id} eventInfo={ticket} onTicketDeleted={onTicketDeleted} />)}
+            { categoryId && currentTickets.length === 0 ? <OutOfStock/>: currentTickets.map((ticket) => <CardComponent key={ticket._id} eventInfo={ticket} onTicketDeleted={onTicketDeleted} />)}
         </div>
     )
 }

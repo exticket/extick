@@ -2,8 +2,7 @@ import React from 'react';
 import './CardComponent.css';
 import { useHistory } from 'react-router-dom';
 import ModifyTicketIcons from '../ModifyTicketIcons';
-
-
+import IsNotValidDate from '../Home/ValidDate';
 
 export default function CardComponent({ eventInfo, onTicketDeleted }) {
     const history = useHistory();
@@ -19,7 +18,7 @@ export default function CardComponent({ eventInfo, onTicketDeleted }) {
             props: { eventInfo }
         });
     }
-
+    
     return (
 
         <div title="Click For Details" className="card ticket" onClick={() => onCardClick(eventInfo)}>
@@ -32,13 +31,13 @@ export default function CardComponent({ eventInfo, onTicketDeleted }) {
             </div>
 
             <div className="card-content">
-                <p className="date">{date} </p>
-            
+                <p className="date">{date } </p>
+
                 <p className="hour">{time}</p>
                 <p className="location">{eventInfo.location}</p>
                 {/* <p className="sellerName">{eventInfo.seller_Id}</p> */}
                 <p className="price">{eventInfo.price} ₪</p>
-                {history.location.pathname === '/sellers/mytickets' && <ModifyTicketIcons ticketId={eventInfo._id} onTicketDeleted={onTicketDeleted}/>}
+                {history.location.pathname === '/sellers/mytickets' && <ModifyTicketIcons ticketId={eventInfo._id} onTicketDeleted={onTicketDeleted} />}
             </div>
         </div>
     )
