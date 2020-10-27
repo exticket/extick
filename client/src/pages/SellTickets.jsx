@@ -1,16 +1,173 @@
-// // import React, { Component } from 'react'
-// // import Date from '../components/Sell/DatePicker';
-// // // function SellTickets() {
-// // //     return (
-// // //         <div>
-// // //             <h1>Sell Tickets</h1>
-// // //             <Event/>
-// // //             <Date/>
-// // //             <TimePicker/>
-// // //         </div>
-// // //     )
-// // // }
-// // // export default SellTickets;
+import TextField from '@material-ui/core/TextField';
+import React, { useState, useContext, useEffect } from 'react'
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import api from '../apis/ticketsApi';
+import { useHistory } from 'react-router-dom'
+import css from '../pages/try.module.css'
+import SellerContext, { useSeller } from '../SellerContext'
+import DateAndTime from '../components/Sell/dateAndTime';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { getAllCategories } from '../apis/categoriesApi'
+
+
+const useStyles = makeStyles((theme) => ({
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: 200,
+    },
+
+    continer: {
+        display: "inline",
+        flexWrap: 'wrap',
+        margin: theme.spacing(1),
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+    },
+    TextField: {
+        display: "inline",
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
+
+}));
+
+export default function SellTickets() {
+    const classes = useStyles();
+    const [categories, setCategories] = useState([]);
+    const { seller } = useContext(SellerContext);
+    const [dateNow,setDateNow]=useState(()=> {var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        now = now.toISOString().slice(0,16);
+        return now});
+    var sellerId = ""
+    if (seller) {
+        sellerId = seller._id
+    }
+    let history = useHistory();
+    const [ticket, setTicket] = useState({
+        category_Id: "",
+        ticket_dates:dateNow,
+        ticket_title: "",
+        description: "",
+        seller_Id: sellerId,
+        location: "",
+        price: ""
+    });
+
+    const { ticket_title, description, location, seller_Id, ticket_dates, category_Id,
+        price } = ticket;
+    const onInputChange = e => {
+    const x = e.target.name;
+    const y = e.target.value;
+        setTicket({ ...ticket, [e.target.name]: e.target.value });
+    };
+
+    const onSubmit = async e => {
+        e.preventDefault();
+        await api.createTickets(ticket);
+        history.push("/sellers/mytickets");
+    };
+
+    async function fetchData() {
+        try {
+            let categories = await getAllCategories();
+            setCategories(categories);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    return (
+        <form className="f" onSubmit={e => onSubmit(e)}>
+            <div className={css.for}>
+                <div>
+                    <h1>Sell Tickets</h1>
+                </div>
+                <div>
+                    <TextField
+                        name="ticket_title"
+                        value={ticket_title}
+                        onChange={e => onInputChange(e)}
+                        id="outlined-margin-event name" label="Event name"
+                        defaultValue="" className={classes.textField} margin="normal" variant="outlined"
+                    />
+                </div>
+                <div>
+                    <DateAndTime name="ticket_dates" value={ticket_dates}
+                        onInputChange={onInputChange} ></DateAndTime>
+                </div>
+                <div>
+
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel htmlFor="outlined-age-native-simple">Category</InputLabel>
+                        <Select
+                            native
+                            onChange={e => onInputChange(e)}
+                            name="category_Id"
+                        >
+                            <option aria-label="None" value="" />
+                            {categories.map((category) => {
+                                return <option value={category._id}>
+                                    {category.name}</option>
+                            })}
+                        </Select>
+                    </FormControl>
+                </div>
+                <div>
+                    <TextField
+                        name="description"
+                        value={description}
+                        onChange={e => onInputChange(e)}
+                        id="outlined-full-width" label="Descripton(optional)" style={{ margin: 8 }} placeholder="..."
+                        helperText="describe the event!"
+                        fullWidth margin="normal"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        variant="outlined" style={{ /*margin:8,*/ width: '400px' }}
+                    /></div>
+                <div>
+                    <TextField
+                        name="location"
+                        value={location} onChange={e => onInputChange(e)}
+                        id="outlined-required" label="Location"
+                        placeholder="Venue place, City, Address" variant="outlined" className={classes.textField} margin="normal"
+                    />
+                </div>
+                <div>
+                    <TextField
+                        name="price" onChange={e => onInputChange(e)}
+                        value={price}
+                        id="outlined-required" label="How much you want to get paid per ticket?" type="number"
+                        defaultValue="..." helperText="Enter your price" variant="outlined"
+                        className={classes.textField} margin="normal"
+                    />
+                </div>
+                <div>
+                    <Button type='submit' variant="contained" color="secondary">
+                        Create
+                        </Button>
+                </div>
+            </div>
+        </form >
+    );
+}
 
 
 // import React from 'react';
@@ -21,8 +178,8 @@
 
 
 // const useStyles = makeStyles((theme) => ({
-//   root: {
-   
+//   continer: {
+
 //     display: 'flex',
 //     flexWrap: 'wrap',
 //     margin: theme.spacing(1),
@@ -45,7 +202,7 @@
 //       <form action="">
 //       <div>
 //       <h1>Sell Tickets</h1>
-      
+
 //         <TextField          
 //           label="Catgoery"
 //           id="outlined-required"
@@ -229,48 +386,48 @@
 //       };
 //       this.dismissError = this.dismissError.bind(this);
 //     }
-  
+
 //     dismissError() {
 //       this.setState({ error: '' });
 //     }
-  
+
 //     render() {
 //         return (
 //         <div className="SellTicket">
 //          {/* <form onSubmit={this.handleSubmit}> */}
 //          <form>
 //              <h1>Sell Ticket Page</h1>
-  
+
 //             <label for="chooseCategory">Category:</label>
 //             <input placeholder="choose category"  type="text"/>
-  
+
 //             <label for="location">Location:</label>
 //             <input placeholder="location" type="text"/>
-  
+
 //             <label for="eventName">Event Name:</label>
 //             <input placeholder="eventName" data-test="eventName" type="text"/> 
 
 //             <label for="appt">Select a time:</label>
 //             <input type="time" id="appt" />
 //               <button  type="submit">Done</button>
-  
+
 //             <Date/>
 
 //             <label for="price">Enter the price:</label>
 //             <input placeholder="price" type="text" /> 
-  
+
 //             <label for="seats">Enter the seat:</label>
 //             <input placeholder="seats" type="text" />
-  
+
 //             <label for="row">Enter the row of seat:</label>
 //             <input placeholder="row" type="text"/>
-  
+
 //             <label for="seller_Id">Seller Id:</label>
 //             <input placeholder="seller_Id" type="text"/>
-  
+
 //             <label for="description">description:</label>
 //             <textarea name="comment" >Enter text here...</textarea>    
-  
+
 //             <button  type="submit">Done</button>
 //             {
 //               this.state.error &&
@@ -317,48 +474,48 @@
 //       };
 //       this.dismissError = this.dismissError.bind(this);
 //     }
-  
+
 //     dismissError() {
 //       this.setState({ error: '' });
 //     }
-  
+
 //     render() {
 //         return (
 //         <div className="SellTicket">
-         
+
 //          <form> 
 //              <h1>Sell Ticket Page</h1>
-  
+
 //             <label for="chooseCategory">Category:</label>
 //             <input placeholder="choose category"  type="text"/>
-  
+
 //             <label for="location">Location:</label>
 //             <input placeholder="location" type="text"/>
-  
+
 //             <label for="eventName">Event Name:</label>
 //             <input placeholder="eventName" data-test="eventName" type="text"/> 
 
 //             <label for="appt">Select a time:</label>
 //             <input type="time" id="appt" />
 //               <button  type="submit">Done</button>
-  
+
 //             <Date/>
 
 //             <label for="price">Enter the price:</label>
 //             <input placeholder="price" type="text" /> 
-  
+
 //             <label for="seats">Enter the seat:</label>
 //             <input placeholder="seats" type="text" />
-  
+
 //             <label for="row">Enter the row of seat:</label>
 //             <input placeholder="row" type="text"/>
-  
+
 //             <label for="seller_Id">Seller Id:</label>
 //             <input placeholder="seller_Id" type="text"/>//from dataBase
-  
+
 //             <label for="description">description:</label>
 //             <textarea name="comment" >Enter text here...</textarea>    
-  
+
 //             <button  type="submit">Done</button>
 //             {
 //               this.state.error &&
@@ -375,108 +532,10 @@
 //   }
 //   export default SellTickets;
 
-import TextField from '@material-ui/core/TextField';
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import DatePicker from '../components/Sell/DatePicker';
-import Button from '@material-ui/core/Button';
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import { allCatgories } from '../apis/catgory';
-import createTicket from '../apis/ticketsApi';
 
-// import styles from './SellTicketTryout';
+// }
 
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-
-        display: 'flex',
-        flexWrap: 'wrap',
-        margin: theme.spacing(1),
-
-
-    },
-    textField: {
-        marginLeft: theme.spacing(1),
-        marginRight: theme.spacing(1),
-        width: '25ch',
-
-    },
-}));
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     '& .MuiTextField-root': {
-//       margin: theme.spacing(1),
-//       width: '25ch',
-//     },
-//   },
-// }));
-
-export default function LayoutTextFields() {
-    const classes = useStyles();
-
-    return (
-        <form>
-            <div className={classes.root}>
-                <div>
-                    <h1>Sell Tickets</h1>
-
-                    <Autocomplete
-                        options={allCatgories}
-                        getOptionLabel={(option) => option.name}
-                        // onChange={(event, dropdownOption) => onChangeHandler(event, dropdownOption)}
-                        renderInput={(params) => {
-                            const inputProps = params.inputProps;
-                            inputProps.autocomplete = "new-password";
-                            return (
-                                <TextField {...params} inputProps={inputProps} required label="Category" variant="outlined" name="category"  style={{ /*margin:8,*/ width: '400px' }}
-                                />
-                            )
-                        }}
-                    />
-                
-                    <DatePicker />
-
-                    <TextField
-                        id="outlined-margin-event name"label="Event name"
-                        defaultValue="" className={classes.textField}margin="normal" variant="outlined"
-                    />
-                    <TextField
-                        id="outlined-full-width" label="Descripton(optional)" style={{ margin: 8 }} placeholder="..."
-                        helperText="describe the event!"
-                        fullWidth margin="normal"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        variant="outlined"style={{ /*margin:8,*/ width: '400px' }}
-
-                    />
-                     <TextField
-                        id="outlined-required" label="Seller Id"
-                        defaultValue=  {"pull id from url"}variant="outlined"className={classes.textField}margin="normal"
-                    />
-                    <TextField
-                        id="outlined-required" label="Location"
-                        defaultValue="..." variant="outlined" className={classes.textField} margin="normal"
-                    />
-                    <TextField
-                        id="outlined-required" label="Select Date"
-                        defaultValue="..." variant="outlined" className={classes.textField} margin="normal"
-                    />
-                    <TextField
-                        id="outlined-required" label="How much you want to get paid per ticket?"
-                        defaultValue="..." helperText="Enter your price" variant="outlined"
-                        className={classes.textField} margin="normal"
-                    />
-                    <Button variant="contained" color="secondary">
-                        Create
-                    </Button>
-                </div>
-            </div>
-        </form>
-    );
-}
 // import React, { useState } from 'react';
 // // import styles from './SellTicketTryout';
 // import styles from './try.module.css';
