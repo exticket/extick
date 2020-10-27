@@ -29,7 +29,7 @@ export default function Header() {
             }
 
             {!hideSellTicketBtnPaths.includes(pathname) && (
-                <Link to="/sellers/selltickets">
+                <Link className="sell-ticket-link" to="/sellers/selltickets">
                     <LinkButton className="sell-tickets-btn" text="SELL TICKETS" />
                 </Link>)
             }

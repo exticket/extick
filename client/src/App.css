@@ -105,6 +105,13 @@ button {
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
+  align-self: center;
+  border-radius: 5px;
+}
+
+.sell-ticket-link {
+  display: flex;
+  text-decoration: none;
 }
 
 .copyright-text {
