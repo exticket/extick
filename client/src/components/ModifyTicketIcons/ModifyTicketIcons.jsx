@@ -19,7 +19,10 @@ export default function ModifyTicketIcons({ ticketId, onTicketDeleted }) {
 
     function editHandler(event) {
         event.stopPropagation();
-        history.push(`/ticket/management/${ticketId}`);
+        history.push({
+            pathname: `/ticket/management/${ticketId}`,
+            props: { ticketId }
+        });
     }
 
     return (
