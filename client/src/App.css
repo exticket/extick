@@ -82,11 +82,30 @@ header {
   background-color: #030303;
   padding: 10px 5vw;
 }
+.h1{
+  font-size: 70px;
+  line-height: 44px;
+  text-align: center;
+  margin-bottom: 80px;
+  font-family: "Avant Garde", "Avantgarde", Century Gothic, CenturyGothic, AppleGothic, sans-serif	
 
+}
 button {
   cursor: pointer;
 }
 
+.btnA button{
+  justify-content: center;
+  left: 20%;
+  width: 50%;
+  padding:16px 31px;
+  margin-top: 50px;
+  font-weight: bold;
+  color: #000;
+  background-color: #49eedc;
+
+  font-family: "Avant Garde", "Avantgarde", Century Gothic, CenturyGothic, AppleGothic, sans-serif	
+}
 .link-button:active {
   color: unset;
 }
@@ -190,4 +209,9 @@ footer {
   .tickets-container {
     width: 75%;
   }
+}
+
+.item {
+  align-self: center;
+  size:"100px";
 }

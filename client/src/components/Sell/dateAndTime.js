@@ -17,9 +17,10 @@ const useStyles = makeStyles((theme) => ({
       flexWrap: 'wrap',
   },
   textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width:230,
+    marginLeft: theme.spacing(5),
+    marginTop: theme.spacing(2),
+    marginRight: theme.spacing(1),
+    width:320,
   },
 
   continer: {
@@ -59,7 +60,7 @@ export default function MaterialUIPickers({onInputChange,name,value}) {
     id="datetime-local"
     name={name}
     value={value}
-    label="Next appointment"
+    label="Select Date and Time"
     type="datetime-local"
     required
     className={classes.textField}
