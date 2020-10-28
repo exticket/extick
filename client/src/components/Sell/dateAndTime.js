@@ -10,7 +10,6 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-// import setTicketDates from '../../pages/SellTickets'
 const useStyles = makeStyles((theme) => ({
   container: {
       display: 'flex',
@@ -46,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function MaterialUIPickers({onInputChange,name,value}) {
-  // The first commit of Material-UI
+  
   const [selectedDate, setSelectedDate] = React.useState();
   const classes = useStyles();
 

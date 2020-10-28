@@ -69,7 +69,7 @@ class LoginPage extends Component {
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
 
-          <h1>Login In</h1>
+          <h1>Login</h1>
           <input placeholder="Email" type="email" data-test="email" value={this.state.email} onChange={this.handleEmailChange} />
 
           <input placeholder="Password" type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />

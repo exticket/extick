@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import MenuItem from './MenuItem';
 import classNames from 'classnames';
 
-//items must be an array of objects with id and text properties. example:[{_id:1, name:'someText'}]
-//ulClass is the css class for inner ul html tag.
-//liClass is the css class for inner li html tag.
-//liClassClicked is the css class to add to inner li html tag when it is clicked.
 function Menu({ items, ulClass, liClass, liClassClicked, onItemClicked }) {
     const [clickedItemId, setClickedItemId] = useState('1');
     function clickHandler(id) {
