@@ -21,8 +21,7 @@ export default function EventProfile({ match }) {
     return (
         ticket && <div className="pageContainer">
 
-            <div className="eventImgProfile">
-                <img className="eventImg" src={ticket.category_Id.imgUrl} alt="event" />
+            <div className="eventImgProfile" style={{backgroundImage:`url(${ticket.category_Id.img_big})`}}>
             </div>
 
             <div className="pagePadding">
@@ -62,23 +61,24 @@ export default function EventProfile({ match }) {
                 <div className="bottomContainer">
                     <div className="leftBottomContainer">
 
-                        <p className="category">Category: <b>{ticket.category_Id.name}</b></p>
+                        <p className=""><span className="title">Category:</span> <b>{ticket.category_Id.name}</b></p>
 
-                        <p className="eventDescription">Description: <b>{ticket.description}</b></p>
+                        <p className="eventDescription"><span className="title">Description:</span> <b>{ticket.description}</b></p>
 
-                        <p className="seatNumber">Seat number: <b>row - {ticket.row} &emsp;seat - {ticket.seats}</b></p>
+                        <p className="seatNumber"><span className="title">Seat number:</span> <b>row - {ticket.row} &emsp;seat - {ticket.seats}</b></p>
                     </div>
 
                     <div className="rightBottomContainer">
                         {
                             showSellerDetails ?
-                                <>
+                                <div className="seller-details">
                                     <AccountCircleOutlinedIcon fontSize="large" />
                                     <p className="name">{ticket.seller_Id.first_name + " " + ticket.seller_Id.last_name}</p>
                                     <p className="phone">{ticket.seller_Id.tel}</p>
+                                    <p className="city">{ticket.seller_Id.city}</p>
                                     <div className="sendEmail"><a href={`mailto:${ticket.seller_Id.email}`}>Send an email to the seller</a></div>
-                                </> :
-                                <Button variant="contained" onClick={() => setShowSellerDetails(true)}>Show Seller Details</Button>
+                                </div> :
+                                <Button className="show-seller-details" variant="contained" onClick={() => setShowSellerDetails(true)}>Show Seller Details</Button>
                         }
                     </div>
 

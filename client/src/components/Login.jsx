@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from '../pics/logicon.png';
 import { loginRequest } from '../apis/authentication-Api';
 import { Redirect } from "react-router-dom";
 import { SellerContext } from "../SellerContext";
+import Button from '@material-ui/core/Button';
 
 class LoginPage extends Component {
   constructor() {
@@ -69,18 +69,17 @@ class LoginPage extends Component {
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
 
-          <h1>Login Page</h1>
-          <img src={logo} alt="logo" width="100px" height="100px" />
+          <h1>Login In</h1>
           <input placeholder="Email" type="email" data-test="email" value={this.state.email} onChange={this.handleEmailChange} />
 
           <input placeholder="Password" type="password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
 
-          <button type="submit">Log in</button>
+          <Button type="submit">Login</Button>
+
           {
 
             this.state.error &&
             <h3 data-test="error" onClick={this.dismissError}>
-              <button onClick={this.dismissError}>✖</button>
               {this.state.error}
             </h3>
           }

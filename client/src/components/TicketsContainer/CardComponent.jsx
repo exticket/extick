@@ -25,21 +25,16 @@ export default function CardComponent({ eventInfo, onTicketDeleted }) {
     // }
     return (
 
-        <div title="Click For Details" className="card ticket" onClick={() => onCardClick()}>
+        <div title="Click For Details" className="card" onClick={() => onCardClick()}>
             <div className="eventImgContainer">
-                <img className="eventImg" src={eventInfo.imgUrl} alt="event" />
-                <div className="card-header">
-                    <div className="circle-icon"></div>
-                    <span className="eventName">{eventInfo.ticket_title}</span>
-                </div>
+                    <img className="eventImg" src={eventInfo.category_Id && eventInfo.category_Id.img_small} alt="event" />
             </div>
 
             <div className="card-content">
-                <p className="date">{date} </p>
-
-                <p className="hour">{time}</p>
+                <p className="category">{eventInfo.category_Id.name}</p>
+                <p>{eventInfo.ticket_title}</p>
+                <p>{date} | {time}</p>
                 <p className="location">{eventInfo.location}</p>
-                {/* <p className="sellerName">{eventInfo.seller_Id}</p> */}
                 <p className="price">{eventInfo.price} ₪</p>
                 {history.location.pathname === '/sellers/mytickets' && <ModifyTicketIcons ticketId={eventInfo._id} onTicketDeleted={onTicketDeleted} />}
             </div>

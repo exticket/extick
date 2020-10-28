@@ -1,7 +1,7 @@
 .pageContainer {
     display: flex;
     flex-direction: column;
-   
+
 }
 
 .innerContainer {
@@ -22,20 +22,20 @@
 /* --------------- */
 .eventName {
     font-family: Roboto;
-font-style: normal;
-font-weight: 900;
-font-size: 24px;
-line-height: 28px;
-margin: 0;
-margin-top: 34px;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 28px;
+    margin: 0;
+    margin-top: 34px;
 }
 
 .infoContainer {
     font-family: SF Pro Text;
-font-style: normal;
-font-weight: 300;
-font-size: 20px;
-line-height: 18px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 18px;
 }
 
 .infoContainerLeft {
@@ -88,21 +88,53 @@ line-height: 18px;
     font-weight: 300;
 }
 
+.leftBottomContainer p{
+    margin: 20px 0;
+}
+
+.title{
+    font-weight: 500;
+    color: #6D6D74;
+}
+
 .rightBottomContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex: 0.3;
     text-align: center;
+}
+
+.seller-details {
+    flex:1;
+    padding: 20px 0;
+    background-color: #49EEDC;
+}
+
+.rightBottomContainer p{
+    font-weight: bold;
 }
 
 .imgRightBottomSection {
     width: 50px;
 }
-.eventImgProfile {
-    position: relative;
-    text-align: center;
-    height: 364px;
-    background-color: rgb(243, 243, 243);
-  
+
+.show-seller-details {
+    background-color: #49EEDC !important;
+    font-weight: bold !important;
 }
-.pagePadding{
-    padding: 0 1rem;
+
+.eventImgProfile {
+    height: 350px;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.pagePadding {
+    padding: 0 5rem;
+}
+
+.city, .name{
+    text-transform: capitalize;
 }

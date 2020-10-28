@@ -8,6 +8,7 @@ main {
 }
 
 .category-menu {
+  text-transform: capitalize;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -16,22 +17,20 @@ main {
 }
 
 .category-item {
-  border: 1px solid grey;
-  font-weight: 500;
-  border-radius: 20px;
+  font-weight: 400;
+  font-size: 18px;
   margin: 8px;
-  padding: 5px 20px;
+  padding: 5px 30px;
 
 }
 
 .category-item-clicked {
-  background-color: black;
-  color: white;
+  border-bottom: 5px solid #009FDB;
+  font-weight: bold;
 }
 
 .category-item:hover {
-  background-color: #999999;
-  color: whitesmoke;
+  border-bottom: 5px solid #85ddfd;
   cursor: pointer;
 }
 
@@ -55,9 +54,22 @@ main {
 }
 
 .Login input {
+  width: 325px;
+  height: 56px;
+  padding: 10px;
+  margin: 20px 0 !important;
+  border-radius: 4px;
+  border: 1px solid #bbbbbb;
   margin: 10px 0;
   display: block;
   box-sizing: border-box;
+}
+
+.Login form button[type="submit"] {
+  font-weight: bold;
+  background-color: #49EEDC;
+  padding: 10px 0;
+  width: 325px;
 }
 
 .main-banner {
@@ -75,6 +87,16 @@ main {
   line-height: 44px;
   text-align: center;
   color: #FFFFFF;
+}
+
+.search-bar {
+  width: 100%;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.search-input {
+  width: 30%;
 }
 
 header {
@@ -119,6 +141,13 @@ button {
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
+  align-self: center;
+  border-radius: 5px;
+}
+
+.sell-ticket-link {
+  display: flex;
+  text-decoration: none;
 }
 
 .copyright-text {

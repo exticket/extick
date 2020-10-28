@@ -35,6 +35,8 @@ const createTicket = (req, res) => {
 }
 const getTickets = (req, res) => {
     Ticket.find()
+        .populate('category_Id')
+        .exec()
         .then(tickets => {
             return res.status(200).json({ success: true, data: tickets, message: 'Could not get tickets!' });
 
